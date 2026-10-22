@@ -407,9 +407,10 @@ details.adv[open] > summary { color: var(--shturval); }
 </style>
 <meta name="description" content="Посчитайте, сколько стоит Kubernetes-платформа в проде при своей сборке и какой бюджет высвобождает Штурвал.">
 <link rel="icon" href="assets/shturval-sign.svg" type="image/svg+xml">
-<style>.notes-toggle, #reset-coef, .props, .note, .draft { display: none !important; }</style>
+<style>.notes-toggle, .props, .note, .draft { display: none !important; }
+.tbl.coef tr.changed td:first-child::after { color: var(--shturval); }</style>
 </head>
-<body class="hide-notes">
+<body class="hide-notes coef-open">
 
 <header class="nav">
   <div class="wrap">
@@ -709,7 +710,7 @@ details.adv[open] > summary { color: var(--shturval); }
     <div class="coef-head">
       <div>
         <h3>Трудоёмкость операций, человеко-дни</h3>
-        <p>Значения на один кластер. Если у вас другие данные – укажите их в заявке, и мы пересчитаем.</p>
+        <p>Значения на один кластер. Поменяйте их под свой опыт – расчёт обновится сразу, а изменённые значения уйдут вместе с заявкой.</p>
       </div>
       <button class="btn btn-ghost btn-sm" type="button" id="reset-coef">Вернуть коэффициенты</button>
     </div>
@@ -1216,12 +1217,22 @@ details.adv[open] > summary { color: var(--shturval); }
       'Своя сборка K8s: ' + fmtM(R.sc.diy.total) + '; свой «Штурвал»: ' + fmtM(R.sc.own.total) + '; Штурвал без лицензии: ' + fmtM(R.sc.sh.total),
       'Высвобождаемый бюджет: ' + (R.sc.diy.total - R.sc.sh.total < 0 ? '−' : '') + fmtM(Math.abs(R.sc.diy.total - R.sc.sh.total))
     ];
+    // Что посетитель поменял относительно значений по умолчанию – в расширенных параметрах и в таблице коэффициентов
+    var MAIN = ['stack', 'updates', 'vulns', 'clusters', 'clustersEnd', 'nodes', 'years', 'mode', 'salary'];
+    var d = currentDiff();
+    MAIN.forEach(function (k) { delete d.params[k]; });
+    var changed = typeof GROUP_NAMES === 'undefined' ? [] : diffLines(d);
+    if (changed.length) {
+      lines.push('', 'Изменённые допущения:');
+      changed.forEach(function (l) { lines.push('– ' + l[0] + ': ' + l[1]); });
+    }
     $('f-calc').value = lines.join('\n');
   }
 
   /* ===== Таблица коэффициентов ===== */
   function renderCoef() {
-    var edit = !document.body.classList.contains('hide-notes');
+    // Править можно в режиме сверки, а на публичной странице – всегда (класс coef-open у body)
+    var edit = !document.body.classList.contains('hide-notes') || document.body.classList.contains('coef-open');
     var dis = edit ? '' : ' disabled';
     var inp = function (grp, i, key, v) {
       return '<input type="number" step="any" min="0" data-g="' + grp + '" data-i="' + i + '" data-k="' + key + '" value="' + v + '"' + dis + ' aria-label="Значение">';
