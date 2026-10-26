@@ -139,7 +139,7 @@ body.hide-notes .draft { display: none; }
 .fld-top .num input { width: calc(10ch + 26px); }
 .num input::-webkit-outer-spin-button, .num input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 .num input[type="number"] { -moz-appearance: textfield; appearance: textfield; }
-@media (max-width: 440px) { .fld-top { flex-wrap: wrap; } .fld-top .num { width: 100%; } .fld-top .num input, .adv-group .fld-top .num input { width: 100%; } .adv-group { padding: var(--space-4); } }
+@media (max-width: 440px) { .fld-top { flex-wrap: wrap; } .fld-top .num { width: 100%; } .fld-top .num input, .params-group .fld-top .num input { width: 100%; } .params-group { padding: var(--space-4); } }
 input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; height: 24px; background: transparent; margin: 0; cursor: pointer; }
 input[type="range"]::-webkit-slider-runnable-track { height: 4px; border-radius: 2px; background: linear-gradient(to right, var(--shturval) 0 var(--p, 50%), var(--surface-frame) var(--p, 50%) 100%); }
 input[type="range"]::-moz-range-track { height: 4px; border-radius: 2px; background: var(--surface-frame); }
@@ -167,18 +167,18 @@ input[type="range"]::-moz-range-thumb { width: 20px; height: 20px; background: v
 .warn { font-size: 13px; line-height: 1.45; color: var(--ink); padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); background: var(--surface-frame); border-left: 0; }
 .warn::before { content: "Учтите · "; font-weight: 700; color: var(--shturval); }
 
-details.adv { border-top: 1px solid var(--line); padding-top: var(--space-4); }
-details.adv > summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); font-weight: 700; font-size: 15px; }
-details.adv > summary::-webkit-details-marker { display: none; }
-details.adv > summary::after { content: "+"; display: grid; place-items: center; width: 28px; height: 28px; flex: none; background: var(--surface-frame); clip-path: var(--oct); color: var(--shturval); font-size: 18px; }
-details.adv[open] > summary::after { content: "–"; }
-details.adv > summary small { display: block; font-weight: 500; font-size: 13px; color: var(--guide); }
-.adv-body { display: grid; gap: var(--space-5); margin-top: var(--space-5); }
-.adv-group { display: grid; gap: var(--space-4); padding: var(--space-5); border-radius: var(--radius-md); background: var(--black); }
-.adv-group h4 { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--shturval); }
-.adv-group .fld label { font-size: 14px; font-weight: 500; color: var(--ink); }
-.adv-group .num input { background: var(--surface-raised); font-size: 15px; padding: 8px 10px; }
-.adv-group .fld-top .num input { width: calc(11ch + 22px); }
+details.params-more { border-top: 1px solid var(--line); padding-top: var(--space-4); }
+details.params-more > summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); font-weight: 700; font-size: 15px; }
+details.params-more > summary::-webkit-details-marker { display: none; }
+details.params-more > summary::after { content: "+"; display: grid; place-items: center; width: 28px; height: 28px; flex: none; background: var(--surface-frame); clip-path: var(--oct); color: var(--shturval); font-size: 18px; }
+details.params-more[open] > summary::after { content: "–"; }
+details.params-more > summary small { display: block; font-weight: 500; font-size: 13px; color: var(--guide); }
+.params-body { display: grid; gap: var(--space-5); margin-top: var(--space-5); }
+.params-group { display: grid; gap: var(--space-4); padding: var(--space-5); border-radius: var(--radius-md); background: var(--black); }
+.params-group h4 { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--shturval); }
+.params-group .fld label { font-size: 14px; font-weight: 500; color: var(--ink); }
+.params-group .num input { background: var(--surface-raised); font-size: 15px; padding: 8px 10px; }
+.params-group .fld-top .num input { width: calc(11ch + 22px); }
 
 /* Результат */
 .result { display: grid; gap: var(--space-5); }
@@ -361,8 +361,8 @@ footer a:hover { color: var(--ink); }
 /* Вводные: выбранное подсвечено тинтом */
 .seg button[aria-pressed="true"] { background: var(--shturval-tint-2); }
 .check:has(input:checked) { background: var(--shturval-tint); }
-details.adv > summary::after { background: var(--shturval-tint-2); }
-details.adv[open] > summary { color: var(--shturval); }
+details.params-more > summary::after { background: var(--shturval-tint-2); }
+details.params-more[open] > summary { color: var(--shturval); }
 
 /* Заливка №1 – главный вывод: высвобождаемый бюджет. Текст на бирюзовом – только чёрный */
 .hero-num { background: var(--shturval); color: var(--on-product); }
@@ -519,11 +519,11 @@ details.adv[open] > summary { color: var(--shturval); }
             <span class="hint">До вычета НДФЛ. Взносы, премии и накладные посчитаем сами</span>
           </div>
 
-          <details class="adv" id="adv">
+          <details class="params-more" id="params-more">
             <summary><span>Расширенные параметры<small>Рост кластеров, стоимость сотрудника, команды и простои</small></span></summary>
-            <div class="adv-body">
+            <div class="params-body">
 
-              <div class="adv-group">
+              <div class="params-group">
                 <h4>Рост инфраструктуры</h4>
                 <div class="fld">
                   <div class="fld-top">
@@ -534,7 +534,7 @@ details.adv[open] > summary { color: var(--shturval); }
                 </div>
               </div>
 
-              <div class="adv-group">
+              <div class="params-group">
                 <h4>Стоимость сотрудника</h4>
                 <div class="fld"><div class="fld-top"><label for="bonus">Премии и переработки, % к зарплате</label><div class="num"><input id="bonus" type="number" min="0" max="100" step="1"><span class="unit">%</span></div></div></div>
                 <div class="fld"><div class="fld-top"><label for="overhead">Накладные: место, техника, обучение, найм, ДМС – % к зарплате</label><div class="num"><input id="overhead" type="number" min="0" max="200" step="1"><span class="unit">%</span></div></div></div>
@@ -544,7 +544,7 @@ details.adv[open] > summary { color: var(--shturval); }
                 <span class="hint" id="emp-cost-note"></span>
               </div>
 
-              <div class="adv-group">
+              <div class="params-group">
                 <h4>Своя сборка K8s</h4>
                 <span class="hint">Команды сборки, сопровождения и ИБ заданы для 10 кластеров. Сборку и ИБ для другого масштаба пересчитываем по корню: 40 кластеров – ×2, 3 кластера – ×0,55. Сопровождение растёт медленнее – см. подсказку к полю</span>
                 <div class="fld"><div class="fld-top"><label for="buildTeam">Команда создания сборки</label><div class="num"><input id="buildTeam" type="number" min="0" max="50" step="0.5"><span class="unit">чел.</span></div></div></div>
@@ -556,7 +556,7 @@ details.adv[open] > summary { color: var(--shturval); }
                   <span class="hint" id="maint-hint">Проверка совместимости компонентов при каждом обновлении. Задано для 10 кластеров. Сборка одна на все кластеры, поэтому выше 10 кластеров команда растёт медленно: вдвое при 16-кратном росте их числа, не больше ×2 – это 160 кластеров и больше. Ниже 10 кластеров уменьшается по корню: 5 кластеров – ×0,71</span></div>
               </div>
 
-              <div class="adv-group">
+              <div class="params-group">
                 <h4>Свой «Штурвал»</h4>
                 <div class="fld"><div class="fld-top"><label for="ownTeam">Команда разработки платформы</label><div class="num"><input id="ownTeam" type="number" min="0" max="200" step="1"><span class="unit">чел.</span></div></div>
                   <span class="hint">Работает весь период: после запуска платформу нужно развивать и обновлять</span></div>
@@ -564,7 +564,7 @@ details.adv[open] > summary { color: var(--shturval); }
                   <span class="hint">Не меньше 2 лет. Пока платформы нет, кластеры обслуживаются вручную – как в своей сборке</span></div>
               </div>
 
-              <div class="adv-group">
+              <div class="params-group">
                 <h4>Команда эксплуатации</h4>
                 <div class="fld"><div class="fld-top"><label for="minTeam">Минимальная команда платформы</label><div class="num"><input id="minTeam" type="number" min="0" max="50" step="0.5"><span class="unit">чел.</span></div></div>
                   <span class="hint">Меньше не бывает даже при малой нагрузке: отпуска, больничные, передача знаний</span></div>
@@ -573,7 +573,7 @@ details.adv[open] > summary { color: var(--shturval); }
                 <div class="fld"><div class="fld-top"><label for="allowance">Доплата за дежурства, % к стоимости инженера</label><div class="num"><input id="allowance" type="number" min="0" max="100" step="1"><span class="unit">%</span></div></div></div>
               </div>
 
-              <div class="adv-group">
+              <div class="params-group">
                 <h4>Штурвал: инфраструктура и обучение</h4>
                 <div class="fld"><div class="fld-top"><label for="mgmtVms">ВМ под кластер управления</label><div class="num"><input id="mgmtVms" type="number" min="0" max="50" step="1"><span class="unit">шт.</span></div></div>
                   <span class="hint">Управляющий кластер Штурвала живёт отдельно от рабочих. У своей платформы он тоже есть – после запуска</span></div>
@@ -582,7 +582,7 @@ details.adv[open] > summary { color: var(--shturval); }
                   <span class="hint">Разово в первый год для всей команды эксплуатации</span></div>
               </div>
 
-              <div class="adv-group">
+              <div class="params-group">
                 <h4>Миграция</h4>
                 <span class="hint">Считается отдельным проектом поверх команды эксплуатации – свободная ёмкость минимальной команды его не покрывает. На Штурвал – только если кластеры уже есть («уже есть» или «переделываем»). Своя сборка – при «переделываем». Свой «Штурвал» – всегда: после запуска кластеры переносят на новую платформу</span>
                 <div class="fld"><div class="fld-top"><label for="migPd">Перенос одного кластера, ч.д.</label><div class="num"><input id="migPd" type="number" min="0" max="100" step="0.5"><span class="unit">ч.д.</span></div></div>
@@ -591,7 +591,7 @@ details.adv[open] > summary { color: var(--shturval); }
                 <div class="fld"><div class="fld-top"><label for="migParOther">Параллельная работа при переходе на новую сборку или свою платформу</label><div class="num"><input id="migParOther" type="number" min="0" max="36" step="1"><span class="unit">мес.</span></div></div></div>
               </div>
 
-              <div class="adv-group">
+              <div class="params-group">
                 <h4>Безопасность и простои</h4>
                 <div class="fld"><div class="fld-top"><label for="secFte">Команда ИБ для закрытия уязвимостей</label><div class="num"><input id="secFte" type="number" min="0" max="20" step="0.5"><span class="unit">FTE</span></div></div>
                   <span class="hint">Для своей сборки и своей платформы. В Штурвале это делает вендор. Значение – для 10 кластеров или 200 worker-узлов; с ростом пересчитываем по корню от большего из масштабов</span></div>
