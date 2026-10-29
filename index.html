@@ -18,11 +18,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-/* Страница тёмная и в светлой, и в тёмной системной теме. Правило ниже – явный сигнал для Noir, Dark Reader
-   и авто-затемнения браузеров, что тёмная версия уже есть и перекрашивать не нужно */
 @media (prefers-color-scheme: dark) { :root { color-scheme: dark; } }
-/* Оформление – по дизайн-системе «Лаборатория Числитель (профиль сайта)», как лендинг Штурвал Enterprise ML.
-   Чёрный фон, Montserrat 500/700, один продуктовый цвет – Штурвал #1cf2de, карточки #171717 с radius 20px, восьмигранник. */
 :root {
   color-scheme: dark;
   --black: #000000;
@@ -42,10 +38,8 @@
   --focus: var(--white);
   --note: #ffcb70;
   --note-soft: rgba(255, 203, 112, .08);
-
   --f-sans: "Montserrat", Verdana, sans-serif;
   --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-
   --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
   --space-5: 24px; --space-6: 32px; --space-7: 48px; --space-8: 72px;
   --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px;
@@ -53,7 +47,6 @@
   --max: 1296px;
   --oct: polygon(29.3% 0, 70.7% 0, 100% 29.3%, 100% 70.7%, 70.7% 100%, 29.3% 100%, 0 70.7%, 0 29.3%);
 }
-
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
 html { scroll-behavior: smooth; background: var(--surface); }
@@ -65,14 +58,11 @@ b, strong { font-weight: 700; }
 ul, ol { margin: 0; padding: 0; list-style: none; }
 :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
-
 .wrap { width: 100%; max-width: var(--max); margin-inline: auto; padding-inline: var(--space-8); }
 @media (max-width: 1100px) { .wrap { padding-inline: var(--space-5); } }
 @media (max-width: 600px) { .wrap { padding-inline: var(--space-4); } }
-
 section { padding-block: 96px 0; scroll-margin-top: 72px; }
 @media (max-width: 700px) { section { padding-top: 64px; } }
-
 .sec-head { display: grid; gap: var(--space-4); margin-bottom: var(--space-7); }
 .eyebrow { font-size: clamp(18px, 1.8vw, 22px); line-height: 1.2; font-weight: 500; letter-spacing: .02em; text-transform: uppercase; color: var(--ink-muted); }
 .h2 { font-size: clamp(30px, 3.8vw, 48px); line-height: 1.1; font-weight: 700; max-width: 24ch; }
@@ -80,16 +70,12 @@ section { padding-block: 96px 0; scroll-margin-top: 72px; }
 .mono { font-family: var(--f-mono); }
 .overline { font-size: 12px; line-height: 1.3; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--shturval); }
 .cap { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--guide); }
-
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); padding: 14px 24px; border-radius: var(--radius-sm); font-family: var(--f-sans); font-weight: 700; font-size: 15px; text-decoration: none; border: 1px solid transparent; cursor: pointer; transition: background .15s, box-shadow .2s; }
 .btn-primary { background: var(--shturval); color: var(--on-product); }
 .btn-primary:hover { box-shadow: var(--glow-shturval); }
 .btn-ghost { background: var(--surface-glass); color: var(--ink); }
 .btn-ghost:hover { background: var(--surface-frame); }
 .btn-sm { padding: 8px 14px; font-size: 13px; }
-
-/* NAV */
-/* Парящая плашка: шапка не перекрывает hero чёрной полосой – свечение видно вокруг неё */
 .nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; height: 76px; margin-bottom: -76px; padding: 12px calc(var(--space-8) - 20px) 0; pointer-events: none; }
 .nav .wrap { display: flex; align-items: center; gap: var(--space-5); height: 64px; max-width: calc(var(--max) - 2 * var(--space-8) + 40px); padding-inline: 20px; border-radius: 16px; background: rgba(23, 23, 23, .62); backdrop-filter: blur(16px) saturate(140%); -webkit-backdrop-filter: blur(16px) saturate(140%); box-shadow: 0 8px 32px rgba(0, 0, 0, .35); pointer-events: auto; }
 @media (max-width: 1100px) { .nav { padding-inline: 12px; } }
@@ -103,11 +89,8 @@ section { padding-block: 96px 0; scroll-margin-top: 72px; }
 .nav .btn { padding: 10px 18px; font-size: 14px; }
 @media (max-width: 960px) { .nav-links { display: none; } .nav .btn { margin-left: auto; } }
 @media (max-width: 560px) { .nav .btn { display: none; } .nav-logo span { display: none; } }
-
-/* HERO */
 .hero { position: relative; padding-block: 164px 8px; isolation: isolate; }
 @media (max-width: 700px) { .hero { padding-top: 120px; } }
-/* Свечение hero – отдельный слой: заходит под шапку и плавно растворяется ниже hero, без обрезанного края */
 .hero-glow { position: absolute; z-index: -1; inset: 0 0 -360px 0; overflow: hidden; pointer-events: none;
   -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 calc(100% - 520px), transparent 100%); mask-image: linear-gradient(to bottom, #000 0, #000 calc(100% - 520px), transparent 100%); }
 .hero-glow::before { content: ""; position: absolute; z-index: -1; width: 720px; height: 720px; right: -260px; top: -380px; background: radial-gradient(closest-side, rgba(28, 242, 222, .32), rgba(28, 242, 222, 0)); }
@@ -118,18 +101,13 @@ section { padding-block: 96px 0; scroll-margin-top: 72px; }
 @media (max-width: 960px) { .hero-grid { grid-template-columns: minmax(0, 1fr); gap: var(--space-6); } }
 .hero-copy { min-width: 0; }
 .hero-cta { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-6); }
-/* Анимация: рубль рисуется линией и превращается в знак Штурвала */
 .hero-viz { margin: 0; min-width: 0; }
 .hero-viz svg { display: block; width: 100%; height: auto; max-width: 100%; overflow: visible; font-family: var(--f-sans); }
-/* На телефоне график сжимается почти вдвое – подписи в единицах SVG делаем крупнее */
-
-/* CALCULATOR */
 .calc { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr); gap: var(--space-5); align-items: start; }
 @media (max-width: 1000px) { .calc { grid-template-columns: minmax(0, 1fr); } }
 .card { background: var(--surface-raised); border-radius: var(--radius-lg); padding: var(--space-6); min-width: 0; }
 @media (max-width: 520px) { .card { padding: var(--space-5); } }
 .card h3 { font-size: 20px; line-height: 1.25; }
-
 .inputs { display: grid; gap: var(--space-5); }
 .fld { display: grid; gap: var(--space-2); }
 .fld-top { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-3); }
@@ -152,7 +130,6 @@ input[type="range"]::-moz-range-track { height: 4px; border-radius: 2px; backgro
 input[type="range"]::-moz-range-progress { height: 4px; border-radius: 2px; background: var(--shturval); }
 input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; margin-top: -8px; background: var(--shturval); clip-path: var(--oct); border: 0; }
 input[type="range"]::-moz-range-thumb { width: 20px; height: 20px; background: var(--shturval); clip-path: var(--oct); border: 0; border-radius: 0; }
-
 .seg { display: grid; grid-template-columns: repeat(var(--n, 2), minmax(0, 1fr)); gap: var(--space-1); padding: var(--space-1); border-radius: var(--radius-md); background: var(--black); border: 1px solid var(--line); }
 .seg button { font: inherit; font-weight: 700; font-size: 14px; color: var(--ink-muted); background: transparent; border: 0; border-radius: var(--radius-sm); padding: 9px 10px; cursor: pointer; }
 .seg button:hover { color: var(--ink); }
@@ -160,7 +137,6 @@ input[type="range"]::-moz-range-thumb { width: 20px; height: 20px; background: v
 .seg button[aria-pressed="true"] small { color: var(--shturval); }
 .seg button small { display: block; font-weight: 500; font-size: 12px; color: var(--guide); }
 @media (max-width: 440px) { .seg[data-seg="stack"] { grid-template-columns: minmax(0, 1fr); } }
-
 .checks { display: grid; gap: var(--space-2); }
 .check { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: var(--space-3); align-items: start; padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); background: var(--black); border: 1px solid var(--line); cursor: pointer; }
 .check:hover { border-color: var(--ink-muted); }
@@ -172,7 +148,6 @@ input[type="range"]::-moz-range-thumb { width: 20px; height: 20px; background: v
 .check span { display: block; font-size: 13px; color: var(--guide); }
 .warn { font-size: 13px; line-height: 1.45; color: var(--ink); padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); background: var(--surface-frame); border-left: 0; }
 .warn::before { content: "Учтите · "; font-weight: 700; color: var(--shturval); }
-
 details.params-more { border-top: 1px solid var(--line); padding-top: var(--space-4); }
 details.params-more > summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); font-weight: 700; font-size: 15px; }
 details.params-more > summary::-webkit-details-marker { display: none; }
@@ -185,13 +160,8 @@ details.params-more > summary small { display: block; font-weight: 500; font-siz
 .params-group .fld label { font-size: 14px; font-weight: 500; color: var(--ink); }
 .params-group .num input { background: var(--surface-raised); font-size: 15px; padding: 8px 10px; }
 .params-group .fld-top .num input { width: calc(11ch + 22px); }
-
-/* Результат */
 .result { display: grid; gap: var(--space-5); }
-/* На десктопе параметры прокручиваются вместе со страницей, а результат прилипает под шапкой и стоит на месте,
-   пока виден калькулятор. Своя прокрутка у результата – только если он выше экрана, и она не утаскивает страницу */
 @media (min-width: 1001px) {
-  /* При переходе к расчёту панели встают ровно под шапкой: отступ секции (96px) уходит за верх экрана */
   #calc { scroll-margin-top: -8px; }
   .calc { align-items: start; }
   .result { position: sticky; top: 88px; max-height: calc(100vh - 104px); overflow-y: auto; overscroll-behavior: contain;
@@ -213,16 +183,12 @@ details.params-more > summary small { display: block; font-weight: 500; font-siz
 .hero-num .per-year { font-size: clamp(20px, 2vw, 26px); line-height: 1.1; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
 .hero-num .per-year small { font-size: .62em; font-weight: 500; color: var(--ink-muted); margin-left: 4px; }
 .hero-num { scroll-margin-top: 88px; }
-
-/* Панель с итогом на телефоне: видна, пока меняете параметры, а сам результат за экраном */
 .mbar { position: fixed; z-index: 30; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom, 0px)); display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: var(--space-3); padding: 12px 16px; border-radius: var(--radius-md); background: var(--surface-frame); border: 1px solid var(--line); box-shadow: 0 8px 32px rgba(0, 0, 0, .6); text-decoration: none; }
 .mbar .cap { font-size: 12px; }
 .mbar b { display: block; font-size: 20px; line-height: 1.15; color: var(--shturval); font-variant-numeric: tabular-nums; }
 .mbar b small { font-size: 13px; font-weight: 500; color: var(--ink-muted); margin-left: 4px; }
 .mbar span.go { font-size: 13px; font-weight: 700; color: var(--ink); white-space: nowrap; }
 @media (min-width: 1001px) { .mbar { display: none; } }
-
-/* Вертикальная гистограмма: три столбца, высота пропорциональна сумме */
 .bars { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-4); align-items: start; }
 @media (max-width: 440px) { .bars { gap: var(--space-2); } }
 .bar-row { display: grid; gap: var(--space-2); cursor: default; min-width: 0; }
@@ -236,27 +202,22 @@ details.params-more > summary small { display: block; font-weight: 500; font-siz
 .bar-row.sh .bar-name { color: var(--ink); font-weight: 700; }
 .bar-sub { font-size: 12px; line-height: 1.4; color: var(--guide); text-align: center; }
 @media (max-width: 440px) { .bar-name { font-size: 13px; } .bar-sub { font-size: 12px; } }
-
 .kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-2); }
 .kpi { padding: var(--space-4); border-radius: var(--radius-md); background: var(--surface-raised); min-width: 0; }
 .kpi b { display: block; font-size: 22px; line-height: 1.15; font-variant-numeric: tabular-nums; }
 .kpi span { display: block; font-size: 12px; color: var(--ink-muted); margin-top: 4px; line-height: 1.35; }
 .kpi.sh b { color: var(--shturval); }
 @media (max-width: 480px) { .kpis { grid-template-columns: minmax(0, 1fr); } }
-
 .ce { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: var(--space-3); padding: var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--shturval); font-size: 14px; color: var(--ink-muted); }
 .ce::before { content: ""; width: 20px; height: 20px; margin-top: 2px; background: var(--shturval); clip-path: var(--oct); }
 .ce b { color: var(--ink); }
 .ce a { color: var(--shturval); }
 .res-cta { display: flex; flex-wrap: wrap; gap: var(--space-3); }
-
 .tip { position: fixed; z-index: 50; pointer-events: none; background: var(--surface-frame); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 12px; font-size: 13px; width: max-content; min-width: 260px; max-width: min(380px, calc(100vw - 24px)); box-shadow: 0 8px 24px rgba(0,0,0,.5); }
 .tip h5 { margin: 0 0 6px; font-size: 13px; }
 .tip div { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-4); align-items: baseline; color: var(--ink-muted); padding-block: 2px; }
 .tip div b { white-space: nowrap; }
 .tip div b { color: var(--ink); font-variant-numeric: tabular-nums; }
-
-/* Таблицы */
 .tbl-wrap { overflow-x: auto; border-radius: var(--radius-lg); background: var(--surface-raised); }
 table.tbl { width: 100%; border-collapse: collapse; min-width: 640px; font-variant-numeric: tabular-nums; }
 .tbl th, .tbl td { text-align: right; padding: 14px var(--space-5); border-bottom: 1px solid var(--line); font-size: 14px; vertical-align: top; }
@@ -273,8 +234,6 @@ table.tbl { width: 100%; border-collapse: collapse; min-width: 640px; font-varia
 .tabs { display: inline-flex; gap: var(--space-1); padding: var(--space-1); border-radius: var(--radius-md); background: var(--surface-raised); margin-bottom: var(--space-4); }
 .tabs button { font: inherit; font-weight: 700; font-size: 14px; color: var(--ink-muted); background: transparent; border: 0; border-radius: var(--radius-sm); padding: 9px 16px; cursor: pointer; }
 .tabs button[aria-selected="true"] { background: var(--surface-frame); color: var(--ink); }
-
-/* Методика */
 .method-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-3); margin-bottom: var(--space-7); }
 @media (min-width: 901px) { .method-grid > .m-card:nth-child(-n+2) { grid-row: span 2; } }
 .m-card .m-link { color: var(--shturval); font-weight: 700; text-decoration: none; font-size: 14px; }
@@ -287,7 +246,6 @@ table.tbl { width: 100%; border-collapse: collapse; min-width: 640px; font-varia
 .m-card li { display: grid; grid-template-columns: 10px minmax(0, 1fr); gap: var(--space-2); }
 .m-card li::before { content: ""; width: 8px; height: 8px; margin-top: 6px; background: var(--shturval); clip-path: var(--oct); }
 .m-card .formula { font-family: var(--f-mono); font-size: 12px; color: var(--shturval); background: var(--black); padding: 10px 12px; border-radius: var(--radius-sm); line-height: 1.6; }
-
 .coef-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: var(--space-4); margin-bottom: var(--space-4); }
 .coef-head h3 { font-size: 22px; }
 .coef-head p { font-size: 14px; color: var(--ink-muted); max-width: 70ch; margin-top: 6px; }
@@ -297,9 +255,6 @@ table.tbl { width: 100%; border-collapse: collapse; min-width: 640px; font-varia
 .tbl.coef td.sh input:disabled { color: var(--ink); -webkit-text-fill-color: var(--ink); }
 .tbl.coef tr.grp td { background: var(--black); font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--shturval); padding-block: 10px; }
 .tbl.coef tr.changed td:first-child::after { content: "изменено"; margin-left: 8px; font-size: 12px; color: var(--shturval); }
-
-
-/* CTA */
 .cta { position: relative; overflow: hidden; padding-bottom: 112px; }
 .cta-glow { position: absolute; z-index: 0; width: 520px; height: 520px; left: -160px; bottom: -220px; filter: blur(110px); opacity: .45; pointer-events: none; }
 .cta-glow i { display: block; width: 100%; height: 100%; background: var(--shturval); clip-path: var(--oct); }
@@ -326,58 +281,43 @@ form.lead-form { display: grid; gap: 14px; background: var(--surface-raised); bo
 .form-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
 .form-msg { font-size: 13px; color: var(--shturval); min-height: 1.2em; }
 .form-fine { font-size: 12px; color: var(--guide); }
-
 footer { border-top: 1px solid var(--line); padding-block: var(--space-6); }
 footer .wrap { display: flex; flex-wrap: wrap; gap: var(--space-4) var(--space-6); align-items: center; justify-content: space-between; font-size: 14px; color: var(--ink-muted); }
 footer img { height: 28px; width: auto; }
 footer nav { display: flex; flex-wrap: wrap; gap: var(--space-5); }
 footer a { text-decoration: none; }
 footer a:hover { color: var(--ink); }
-/* ===== Цветовые акценты – по ТЗ «меньше мрака, больше акцентов» (лендинг Штурвал Enterprise ML).
-   Только цвет Штурвала и его прозрачности. Три уровня: точка, подсветка (тинт, бирюзовый текст, свечение), заливка – не больше 3 на страницу */
 :root { --shturval-tint: rgba(28, 242, 222, .08); --shturval-tint-2: rgba(28, 242, 222, .16); --band: var(--surface-raised); }
 .hl { color: var(--shturval); }
 .eyebrow { display: flex; align-items: center; gap: 10px; }
 .eyebrow::before { content: ""; flex: none; width: 10px; height: 10px; background: var(--shturval); clip-path: var(--oct); }
 .eyebrow .n { color: var(--shturval); }
-
-/* Hero: свечение сильнее и второе, крупное, у нижнего края */
 .hero-glow::before { background: radial-gradient(closest-side, rgba(28, 242, 222, .42), rgba(28, 242, 222, 0)); }
 .hero-glow::after { content: ""; position: absolute; z-index: -1; width: 1000px; height: 560px; left: -380px; bottom: 80px; background: radial-gradient(closest-side, rgba(28, 242, 222, .2), rgba(28, 242, 222, 0)); pointer-events: none; }
-
-/* Вводные: выбранное подсвечено тинтом */
 .seg button[aria-pressed="true"] { background: var(--shturval-tint-2); }
 .check:has(input:checked) { background: var(--shturval-tint); }
 details.params-more > summary::after { background: var(--shturval-tint-2); }
 details.params-more[open] > summary { color: var(--shturval); }
-
-/* Заливка №1 – главный вывод: высвобождаемый бюджет. Текст на бирюзовом – только чёрный */
 .hero-num { background: var(--shturval); color: var(--on-product); }
 .hero-num::after { background: radial-gradient(closest-side, rgba(255, 255, 255, .35), rgba(255, 255, 255, 0)); }
 .hero-num .cap { color: rgba(0, 0, 0, .66); }
 .hero-num .big, .hero-num .big small, .hero-num .per-year, .hero-num p b { color: var(--on-product); }
 .hero-num .per-year small, .hero-num p { color: rgba(0, 0, 0, .74); }
 .hero-num .lic-badge { background: var(--on-product); color: var(--shturval); }
-/* Своя сборка дешевле – без заливки, как обычная карточка */
 .hero-num.neg { background: var(--surface-frame); color: var(--ink); }
 .hero-num.neg::after { background: radial-gradient(closest-side, rgba(28, 242, 222, .3), rgba(28, 242, 222, 0)); }
 .hero-num.neg .cap { color: var(--guide); }
 .hero-num.neg .big, .hero-num.neg .big small, .hero-num.neg .per-year, .hero-num.neg p b { color: var(--ink); }
 .hero-num.neg .per-year small, .hero-num.neg p { color: var(--ink-muted); }
 .hero-num.neg .lic-badge { background: var(--shturval); color: var(--on-product); }
-
 .bar-row.sh .bar-fill { box-shadow: 0 0 28px rgba(28, 242, 222, .35); }
 .bar-row.sh .bar-val { color: var(--shturval); }
 .kpi.sh { background: var(--shturval-tint); }
-
-/* Полоса: раздел на сером фоне во всю ширину, карточки внутри – чёрные */
 .sec-band { background: var(--band); margin-top: 96px; padding-block: 96px; }
 .sec-band .tbl-wrap, .sec-band .tabs { background: var(--black); }
 @media (max-width: 700px) { .sec-band { margin-top: 64px; padding-block: 64px; } }
 .tabs button[aria-selected="true"] { background: var(--shturval-tint-2); color: var(--ink); }
 .tbl td.sh { background: var(--shturval-tint); }
-
-/* Раздел-вывод: фирменное свечение за блоком */
 .sec-glow { position: relative; isolation: isolate; overflow: hidden; }
 .sec-glow::before { content: ""; position: absolute; z-index: -1; width: 760px; height: 760px; right: -300px; top: -120px; background: radial-gradient(closest-side, rgba(28, 242, 222, .2), rgba(28, 242, 222, 0)); pointer-events: none; }
 .m-card { position: relative; overflow: hidden; isolation: isolate; transition: background .2s; }
@@ -385,15 +325,10 @@ details.params-more[open] > summary { color: var(--shturval); }
 .m-card:hover { background: var(--surface-frame); }
 .m-card:hover::after { opacity: 1; }
 .m-card .num-big { font-size: 48px; line-height: 1; font-weight: 700; color: var(--shturval); opacity: .9; }
-
-/* Разделитель перед заявкой и свечение за формой */
 .cta { padding-top: 64px; }
 .cta > .wrap::before { content: ""; display: block; height: 1px; margin-bottom: 80px; background: linear-gradient(90deg, transparent, rgba(28, 242, 222, .4), transparent); }
 .cta-glow { width: 780px; height: 780px; left: auto; right: -200px; bottom: -300px; opacity: .5; }
 @media (max-width: 700px) { .cta > .wrap::before { margin-bottom: 56px; } }
-
-/* ===== Расчёт, которому можно доверять. Бренд и шрифты прежние ===== */
-/* 1. Компактная шапка-паспорт вместо рекламного первого экрана */
 .hero-compact { padding-block: 128px 0; }
 @media (max-width: 700px) { .hero-compact { padding-top: 104px; } }
 .hero-compact h1 { font-size: clamp(28px, 3.4vw, 44px); line-height: 1.05; max-width: none; margin-top: var(--space-3); }
@@ -412,20 +347,15 @@ details.params-more[open] > summary { color: var(--shturval); }
   .passport > div, .passport > div + div { padding-left: 0; border-left: 0; }
   .passport > div + div { border-top: 1px solid var(--line); } }
 #calc { padding-top: var(--space-7); }
-
 .res-meta { font-size: 13px; color: var(--guide); }
 .res-meta a { color: var(--ink-muted); }
 .hero-num .how { justify-self: start; font-size: 14px; font-weight: 700; color: var(--on-product); }
 .hero-num.neg .how { color: var(--shturval); }
-
-/* Окупаемость и порог выгоды */
 .facts { display: grid; gap: 1px; border-radius: var(--radius-md); overflow: hidden; background: var(--line); }
 .fact { display: grid; gap: 2px; padding: var(--space-3) var(--space-4); background: var(--surface-raised); }
 .fact .cap { font-size: 12px; }
 .fact b { font-size: 15px; line-height: 1.4; }
 .fact span { font-size: 13px; color: var(--guide); }
-
-/* 2. Расчёт по шагам у каждой суммы */
 .ex-btn { all: unset; display: block; cursor: pointer; font-weight: 700; color: var(--ink); }
 .ex-btn span { display: inline-block; margin-left: 8px; font-size: 12px; font-weight: 700; color: var(--shturval); white-space: nowrap; }
 .ex-btn span::after { content: " ▾"; }
@@ -440,10 +370,7 @@ details.params-more[open] > summary { color: var(--shturval); }
 .ex-line i { font-style: normal; color: var(--guide); margin-right: 6px; }
 .ex-line b { color: var(--ink); white-space: nowrap; }
 .m-card .formula b { color: var(--ink); font-weight: 500; }
-
-/* 3. Источники */
 .fn { position: relative; font-size: 12px; font-weight: 700; color: var(--shturval); text-decoration: none; vertical-align: super; line-height: 0; margin-left: 2px; }
-/* Зона нажатия 28 × 28 px вокруг цифры – строка не раздвигается */
 .fn::after { content: ""; position: absolute; left: 50%; top: 50%; width: 28px; height: 28px; transform: translate(-50%, -50%); }
 .fn:hover { text-decoration: underline; }
 .src { margin-top: var(--space-7); }
@@ -457,8 +384,6 @@ details.params-more[open] > summary { color: var(--shturval); }
 .kind.ext { border-color: var(--ink-muted); color: var(--ink); }
 .src-legend { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); margin-top: var(--space-3); font-size: 13px; color: var(--guide); }
 .src-legend span { display: inline-flex; gap: 8px; align-items: center; }
-
-/* 5. Накопленные затраты */
 .cum { margin-bottom: var(--space-6); padding: var(--space-6); border-radius: var(--radius-lg); background: var(--black); }
 @media (max-width: 520px) { .cum { padding: var(--space-4); } }
 .cum-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: var(--space-3) var(--space-5); margin-bottom: var(--space-4); }
@@ -483,11 +408,7 @@ details.params-more[open] > summary { color: var(--shturval); }
 .cum-svg text.end.sh { fill: var(--shturval); }
 .cum-svg text.end-v { fill: var(--ink-muted); font-size: 12px; }
 .cum-note { margin-top: var(--space-3); font-size: 13px; color: var(--guide); }
-
-/* Плашка с бюджетом – ровная заливка, без белого блика в углу */
 .hero-num:not(.neg)::after { display: none; }
-
-/* Шапка v4.1: факты списком вместо плиток, логотип справа */
 .hero-compact .hero-grid { align-items: center; }
 .hero-compact h1 em { display: block; }
 .hero-facts { display: grid; gap: var(--space-3); margin-top: var(--space-5); max-width: 60ch; }
@@ -497,15 +418,11 @@ details.params-more[open] > summary { color: var(--shturval); }
 .hero-facts a { color: var(--shturval); }
 .hero-compact .hero-viz svg { max-height: 360px; }
 @media (max-width: 960px) { .hero-compact .hero-viz { max-width: 360px; margin-inline: auto; } }
-
-/* Как посчитано: суть расчёта, затем цифры по годам */
 .ex-how { font-size: 13px; line-height: 1.5; color: var(--ink); margin-bottom: var(--space-3); }
 .tbl tr.ex-row td.sh .ex-how { color: var(--ink); }
 .ex-years { font-size: 12px; color: var(--guide); }
 .ex-years .ex-line { color: var(--guide); }
 .ex-years .ex-line b { color: var(--ink-muted); font-weight: 700; }
-
-/* Шестигранник «i» на галочках обновлений и уязвимостей: методика, которая зависит от галочки */
 :root { --hex: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); }
 .check-wrap { position: relative; }
 .check-wrap .check { padding-right: 56px; }
@@ -542,8 +459,6 @@ details.params-more[open] > summary { color: var(--shturval); }
   .m-pop td:first-child { grid-column: 1 / -1; }
   .m-pop td[data-l]::before { content: attr(data-l); display: block; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--guide); }
 }
-
-/* Расчёт статьи по шагам в детализации */
 .tbl tr.det-head td { padding: 14px var(--space-5) 8px; border-bottom: 1px solid var(--line); text-align: left; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--shturval); }
 .tbl tr.det-head td > span:first-child { margin-right: var(--space-4); }
 .yr-tabs { display: inline-flex; flex-wrap: wrap; gap: 4px; vertical-align: middle; }
@@ -560,14 +475,10 @@ details.params-more[open] > summary { color: var(--shturval); }
 .tbl tr.det-sum td:first-child { color: var(--ink); font-weight: 700; }
 .tbl tr.det-sum td.sh { color: var(--shturval); }
 .tbl tr.ex-yrs td { padding-top: 12px; }
-
-/* Кнопки под расширенными параметрами */
 .reset-row { display: flex; flex-wrap: wrap; gap: var(--space-2); }
 .btn-fine { color: var(--shturval); }
 #fine { scroll-margin-top: 100px; }
 .ex-btn span::after { content: " →"; }
-
-/* Панель «Как посчитано» */
 html.drawer-open { overflow: hidden; }
 .drawer { position: fixed; inset: 0; z-index: 60; }
 .drawer-bg { position: absolute; inset: 0; background: rgba(0, 0, 0, .6); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); }
@@ -615,8 +526,6 @@ html.drawer-open { overflow: hidden; }
   .d-tot b { font-size: 18px; margin: 0; order: 2; }
   .d-tot small { display: none; }
 }
-
-/* Стрелка «назад»: появляется после перехода по ссылке внутри страницы и возвращает туда, где были */
 .back-btn { position: fixed; z-index: 40; right: 20px; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); width: 56px; height: 56px; display: grid; place-items: center; padding: 0; border: 0; background: none; cursor: pointer; animation: back-in .2s ease-out; }
 .back-btn span { display: grid; place-items: center; width: 100%; height: 100%; background: var(--shturval); clip-path: var(--oct); color: var(--on-product); font: 700 22px/1 var(--f-sans); transition: transform .2s; }
 .back-btn:hover span { transform: scale(1.06); }
@@ -628,11 +537,8 @@ html.drawer-open { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) { .back-btn { animation: none; } }
 @media (max-width: 1000px) { body:has(#mbar:not([hidden])) .back-btn { bottom: calc(96px + env(safe-area-inset-bottom, 0px)); } }
 @media (max-width: 600px) { .back-btn { right: 12px; width: 48px; height: 48px; } }
-
-/* Доступность: скрытые для глаз, но доступные диктору элементы */
 .sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .m-pop:focus { outline: none; }
-/* Цели нажатия не меньше 44 px на телефонах и планшетах */
 @media (max-width: 1000px), (pointer: coarse) {
   .btn-sm { min-height: 44px; }
   .seg button { min-height: 44px; }
@@ -647,8 +553,6 @@ html.drawer-open { overflow: hidden; }
   .hero-num .how, .m-card .m-link { display: inline-flex; align-items: center; min-height: 44px; }
   .nav-logo { min-height: 44px; }
 }
-
-/* «Не верю!» в главной плашке и панель с ответами */
 .hn-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-3); margin-top: var(--space-2); }
 .doubt-btn { font: 700 14px/1 var(--f-sans); color: var(--ink); background: var(--on-product); border: 0; border-radius: 999px; padding: 10px 16px; cursor: pointer; transition: transform .15s; }
 .doubt-btn:hover { transform: translateY(-1px); }
@@ -666,13 +570,10 @@ html.drawer-open { overflow: hidden; }
 .doubt-act:hover { background: var(--shturval); color: var(--on-product); }
 @media (max-width: 560px) { .doubt-list li { padding: var(--space-4) var(--space-4) var(--space-4) 56px; } .doubt-list li::before { left: 16px; } }
 @media (max-width: 1000px), (pointer: coarse) { .doubt-btn { min-height: 44px; } }
-
-/* Плашка «Прототип» справа в hero */
 .hero-grid { position: relative; }
 .proto-badge { position: absolute; top: 0; right: 0; z-index: 2; margin: 0; padding: 8px 16px; border-radius: 999px; background: #ffd23f; color: #000; font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; line-height: 1; }
 @media (max-width: 960px) { .proto-badge { position: static; justify-self: end; margin-bottom: calc(-1 * var(--space-4)); } }
 </style>
-
 <header class="nav">
   <div class="wrap">
     <a class="nav-logo" href="https://chislitellab.ru/shturval" target="_blank" rel="noopener" aria-label="Штурвал">
@@ -688,7 +589,6 @@ html.drawer-open { overflow: hidden; }
     <a class="btn btn-primary" href="#lead">Получить ТЭО</a>
   </div>
 </header>
-
 <main>
 <div class="hero" id="top">
   <div class="hero-glow" aria-hidden="true"></div>
@@ -705,20 +605,16 @@ html.drawer-open { overflow: hidden; }
     </figure>
   </div>
 </div>
-
 <section id="calc" aria-labelledby="calc-h">
   <div class="wrap">
     <h2 class="sr-only" id="calc-h">Калькулятор: параметры и результат</h2>
     <div class="calc">
-
-      <!-- Вводные -->
       <div class="card calc-inputs">
         <div class="inputs" id="inputs">
           <div>
             <p class="overline">Ваша инфраструктура</p>
             <h3 style="margin-top: 6px">Несколько вопросов – и&nbsp;оценка готова</h3>
           </div>
-
           <div class="fld">
             <span class="lbl">Своя сборка Kubernetes</span>
             <div class="seg" style="--n: 3" data-seg="stack" role="group" aria-label="Своя сборка Kubernetes">
@@ -728,7 +624,6 @@ html.drawer-open { overflow: hidden; }
             </div>
             <span class="hint" id="stack-hint"></span>
           </div>
-
           <div class="fld">
             <span class="lbl">Как будут эксплуатироваться кластеры</span>
             <div class="checks">
@@ -737,7 +632,6 @@ html.drawer-open { overflow: hidden; }
             </div>
             <p class="warn" id="ops-warn" hidden></p>
           </div>
-
           <div class="fld">
             <div class="fld-top">
               <label for="clusters">Кластеров Kubernetes</label>
@@ -746,7 +640,6 @@ html.drawer-open { overflow: hidden; }
             <input type="range" data-for="clusters" min="1" max="200" step="1" aria-label="Кластеров Kubernetes">
             <span class="hint">Продуктивные и тестовые вместе</span>
           </div>
-
           <div class="fld">
             <div class="fld-top">
               <label for="nodes">Worker-узлов во всех кластерах</label>
@@ -755,7 +648,6 @@ html.drawer-open { overflow: hidden; }
             <input type="range" data-for="nodes" min="3" max="800" step="1" aria-label="Worker-узлов">
             <span class="hint">Без master-узлов: их считаем сами – по 3 на кластер</span>
           </div>
-
           <div class="fld">
             <span class="lbl">Горизонт расчёта</span>
             <div class="seg" style="--n: 3" data-seg="years" role="group" aria-label="Горизонт расчёта">
@@ -764,7 +656,6 @@ html.drawer-open { overflow: hidden; }
               <button type="button" data-v="7">7 лет</button>
             </div>
           </div>
-
           <div class="fld">
             <span class="lbl">Режим эксплуатации</span>
             <div class="seg" data-seg="mode" role="group" aria-label="Режим эксплуатации">
@@ -772,7 +663,6 @@ html.drawer-open { overflow: hidden; }
               <button type="button" data-v="24x7">24×7<small>круглосуточно</small></button>
             </div>
           </div>
-
           <div class="fld">
             <div class="fld-top">
               <label for="salary">Зарплата инженера</label>
@@ -781,11 +671,9 @@ html.drawer-open { overflow: hidden; }
             <input type="range" data-for="salary" min="100000" max="800000" step="10000" aria-label="Зарплата инженера">
             <span class="hint">До вычета НДФЛ. Взносы, премии и накладные посчитаем сами<a class="fn" href="#src-6" aria-label="Источник 6">6</a></span>
           </div>
-
           <details class="params-more" id="params-more">
             <summary><span>Расширенные параметры<small>Рост кластеров, стоимость сотрудника, команды и простои</small></span></summary>
             <div class="params-body">
-
               <div class="params-group">
                 <h4>Рост инфраструктуры</h4>
                 <div class="fld">
@@ -796,7 +684,6 @@ html.drawer-open { overflow: hidden; }
                   <span class="hint">Растём линейно, узлов на кластер – столько же, сколько сейчас. По нашему опыту число кластеров всегда растёт, особенно при наличии удобных инструментов эксплуатации</span>
                 </div>
               </div>
-
               <div class="params-group">
                 <h4>Стоимость сотрудника</h4>
                 <div class="fld"><div class="fld-top"><label for="bonus">Премии и переработки, % к зарплате</label><div class="num"><input id="bonus" type="number" min="0" max="100" step="1"><span class="unit">%</span></div></div></div>
@@ -806,7 +693,6 @@ html.drawer-open { overflow: hidden; }
                   <span class="hint">Тем, кто строит и сопровождает свою сборку, закрывает уязвимости и разрабатывает свою платформу, нужна более редкая экспертиза. Эксплуатация кластеров во всех вариантах – по обычной ставке.</span></div>
                 <span class="hint"><span id="emp-cost-note"></span><a class="fn" href="#src-1" aria-label="Источник 1">1</a><a class="fn" href="#src-2" aria-label="Источник 2">2</a></span>
               </div>
-
               <div class="params-group">
                 <h4>Своя сборка K8s</h4>
                 <span class="hint">Команды сборки, сопровождения и ИБ заданы для 10 кластеров. Сборку и ИБ для другого масштаба пересчитываем по корню: 40 кластеров – ×2, 3 кластера – ×0,55. Сопровождение растёт медленнее – см. подсказку к полю</span>
@@ -818,7 +704,6 @@ html.drawer-open { overflow: hidden; }
                 <div class="fld"><div class="fld-top"><label for="maintFte">Сопровождение сборки после запуска</label><div class="num"><input id="maintFte" type="number" min="0" max="50" step="0.5"><span class="unit">FTE</span></div></div>
                   <span class="hint" id="maint-hint">Проверка совместимости компонентов при каждом обновлении. Задано для 10 кластеров. Сборка одна на все кластеры, поэтому выше 10 кластеров команда растёт медленно: вдвое при 16-кратном росте их числа, не больше ×2 – это 160 кластеров и больше. Ниже 10 кластеров уменьшается по корню: 5 кластеров – ×0,71</span></div>
               </div>
-
               <div class="params-group">
                 <h4>Свой «Штурвал»</h4>
                 <div class="fld"><div class="fld-top"><label for="ownTeam">Команда разработки платформы</label><div class="num"><input id="ownTeam" type="number" min="0" max="200" step="1"><span class="unit">чел.</span></div></div>
@@ -826,7 +711,6 @@ html.drawer-open { overflow: hidden; }
                 <div class="fld"><div class="fld-top"><label for="ownMonths">Срок разработки до запуска</label><div class="num"><input id="ownMonths" type="number" min="24" max="84" step="1"><span class="unit">мес.</span></div></div>
                   <span class="hint">Не меньше 2 лет. Пока платформы нет, кластеры обслуживаются вручную – как в своей сборке</span></div>
               </div>
-
               <div class="params-group">
                 <h4>Команда эксплуатации</h4>
                 <div class="fld"><div class="fld-top"><label for="minTeam">Минимальная команда платформы</label><div class="num"><input id="minTeam" type="number" min="0" max="50" step="0.5"><span class="unit">чел.</span></div></div>
@@ -835,7 +719,6 @@ html.drawer-open { overflow: hidden; }
                   <span class="hint">Ротация общая с командой инфраструктуры: отдельных людей под дежурства не нанимаем, платим доплату. Только для режима 24×7</span></div>
                 <div class="fld"><div class="fld-top"><label for="allowance">Доплата за дежурства, % к стоимости инженера</label><div class="num"><input id="allowance" type="number" min="0" max="100" step="1"><span class="unit">%</span></div></div></div>
               </div>
-
               <div class="params-group">
                 <h4>Штурвал: инфраструктура и обучение</h4>
                 <div class="fld"><div class="fld-top"><label for="mgmtVms">ВМ под кластер управления</label><div class="num"><input id="mgmtVms" type="number" min="0" max="50" step="1"><span class="unit">шт.</span></div></div>
@@ -844,7 +727,6 @@ html.drawer-open { overflow: hidden; }
                 <div class="fld"><div class="fld-top"><label for="trainCost">Обучение работе со Штурвалом, на инженера</label><div class="num"><input id="trainCost" type="number" min="0" max="2000000" step="10000"><span class="unit">₽</span></div></div>
                   <span class="hint">Разово в первый год для всей команды эксплуатации</span></div>
               </div>
-
               <div class="params-group">
                 <h4>Миграция</h4>
                 <span class="hint">Считается отдельным проектом поверх команды эксплуатации – свободная ёмкость минимальной команды его не покрывает. На Штурвал – только если кластеры уже есть («уже есть» или «переделываем»). Своя сборка – при «переделываем». Свой «Штурвал» – всегда: после запуска кластеры переносят на новую платформу</span>
@@ -853,7 +735,6 @@ html.drawer-open { overflow: hidden; }
                 <div class="fld"><div class="fld-top"><label for="migParSh">Параллельная работа старой сборки при переходе на Штурвал</label><div class="num"><input id="migParSh" type="number" min="0" max="36" step="1"><span class="unit">мес.</span></div></div></div>
                 <div class="fld"><div class="fld-top"><label for="migParOther">Параллельная работа при переходе на новую сборку или свою платформу</label><div class="num"><input id="migParOther" type="number" min="0" max="36" step="1"><span class="unit">мес.</span></div></div></div>
               </div>
-
               <div class="params-group">
                 <h4>Безопасность и простои</h4>
                 <div class="fld"><div class="fld-top"><label for="secFte">Команда ИБ для закрытия уязвимостей</label><div class="num"><input id="secFte" type="number" min="0" max="20" step="0.5"><span class="unit">FTE</span></div></div>
@@ -866,7 +747,6 @@ html.drawer-open { overflow: hidden; }
                 <div class="fld"><div class="fld-top"><label for="downShUpd">Простои Штурвала из-за обновлений</label><div class="num"><input id="downShUpd" type="number" min="0" max="1000" step="1"><span class="unit">ч</span></div></div></div>
                 <div class="fld"><div class="fld-top"><label for="downShInc">Простои Штурвала из-за инцидентов</label><div class="num"><input id="downShInc" type="number" min="0" max="1000" step="1"><span class="unit">ч</span></div></div></div>
               </div>
-
               <div class="reset-row">
                 <button class="btn btn-ghost btn-sm" type="button" id="reset">Сбросить все параметры</button>
                 <a class="btn btn-ghost btn-sm btn-fine" href="#fine">Тонкий расчёт <span aria-hidden="true">↓</span></a>
@@ -875,8 +755,6 @@ html.drawer-open { overflow: hidden; }
           </details>
         </div>
       </div>
-
-      <!-- Результат -->
       <div class="result">
         <p class="res-meta" id="res-meta"></p>
         <div class="hero-num" id="hero-num">
@@ -890,7 +768,6 @@ html.drawer-open { overflow: hidden; }
             <button class="doubt-btn" type="button" id="doubt-open" aria-haspopup="dialog">Не верю!</button>
           </div>
         </div>
-
         <div class="card">
           <div style="margin-bottom: 20px">
             <h3>Стоимость владения</h3>
@@ -898,30 +775,23 @@ html.drawer-open { overflow: hidden; }
           </div>
           <div class="bars" id="bars"></div>
         </div>
-
         <div class="facts" id="facts"></div>
-
         <div class="kpis" id="kpis"></div>
-
         <div class="ce" id="ce" hidden>
           <span><b>До 10 worker-узлов Штурвал бесплатен.</b> Community Edition – полная функциональность без лицензии, поддержка в сообществе. <a href="https://chislitellab.ru/shturval" target="_blank" rel="noopener">Скачать Community Edition</a></span>
         </div>
-
         <div class="res-cta">
           <a class="btn btn-primary" href="#lead">Рассчитать стоимость лицензии</a>
           <a class="btn btn-ghost" href="#details">Детализация</a>
         </div>
       </div>
-
     </div>
   </div>
 </section>
-
 <a class="mbar" id="mbar" href="#hero-num" hidden>
   <span><span class="cap" id="mbar-cap">Высвобождается за 5 лет</span><b id="mbar-val">–</b></span>
   <span class="go">К графику ↓</span>
 </a>
-
 <section id="details" class="sec-band">
   <div class="wrap">
     <div class="sec-head">
@@ -948,7 +818,6 @@ html.drawer-open { overflow: hidden; }
     <div class="tbl-wrap"><table class="tbl" id="tbl"></table></div>
   </div>
 </section>
-
 <section id="method" class="sec-glow">
   <div class="wrap">
     <div class="sec-head">
@@ -956,7 +825,6 @@ html.drawer-open { overflow: hidden; }
       <h2 class="h2">Методика открыта – проверьте каждое допущение</h2>
       <p class="lead">Основа – технико-экономическое обоснование, сделанное финансистами и проверенное на нескольких заказчиках. <span class="hl">Мы не говорим, что Штурвал всегда дешевле.</span> Если вы не обновляете кластеры и не закрываете уязвимости системно, своя сборка может обойтись дешевле – но это другие риски.</p>
     </div>
-
     <div class="method-grid">
       <div class="m-card">
         <p class="num-big">01</p>
@@ -1000,7 +868,6 @@ html.drawer-open { overflow: hidden; }
         <a class="m-link" href="#fine">К таблице коэффициентов ↓</a>
       </div>
     </div>
-
     <div class="coef-head" id="fine">
       <div>
         <h3>Трудоёмкость операций, человеко-дни</h3>
@@ -1009,7 +876,6 @@ html.drawer-open { overflow: hidden; }
       <button class="btn btn-ghost btn-sm" type="button" id="reset-coef">Вернуть коэффициенты</button>
     </div>
     <div class="tbl-wrap"><table class="tbl coef" id="coef"></table></div>
-
     <div class="src" id="sources">
       <div class="coef-head">
         <div>
@@ -1033,10 +899,8 @@ html.drawer-open { overflow: hidden; }
         </tbody>
       </table></div>
     </div>
-
   </div>
 </section>
-
 <section class="cta" id="lead">
   <div class="cta-glow" aria-hidden="true"><i></i></div>
   <div class="wrap">
@@ -1073,7 +937,6 @@ html.drawer-open { overflow: hidden; }
   </div>
 </section>
 </main>
-
 <footer>
   <div class="wrap">
     <img src="assets/chislitel-horizontal-white.svg" alt="Лаборатория Числитель">
@@ -1084,12 +947,9 @@ html.drawer-open { overflow: hidden; }
     </nav>
   </div>
 </footer>
-
 <div class="tip" id="tip" hidden></div>
 <p class="sr-only" id="sr-status" role="status" aria-live="polite"></p>
-
 <button class="back-btn" id="back-btn" type="button" aria-label="Вернуться туда, где были" title="Вернуться туда, где были" hidden><span aria-hidden="true">↑</span></button>
-
 <div class="drawer" id="doubt" hidden>
   <div class="drawer-bg" data-close></div>
   <aside class="drawer-panel narrow" role="dialog" aria-modal="true" aria-labelledby="doubt-title">
@@ -1103,7 +963,6 @@ html.drawer-open { overflow: hidden; }
     <div class="drawer-body" id="doubt-body"></div>
   </aside>
 </div>
-
 <div class="drawer" id="drawer" hidden>
   <div class="drawer-bg" data-close></div>
   <aside class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
@@ -1119,10 +978,8 @@ html.drawer-open { overflow: hidden; }
     <div class="drawer-body" id="drawer-body"></div>
   </aside>
 </div>
-
 <script>
 (function () {
-  /* ===== Параметры по умолчанию. Черновые значения сверить с командой Штурвала ===== */
   var DEFAULTS = {
     stack: 'have', updates: true, vulns: true, clusters: 5, nodes: 20, years: 5, mode: '24x7', salary: 350000,
     clustersEnd: 5,
@@ -1134,31 +991,21 @@ html.drawer-open { overflow: hidden; }
     migPd: 8, migParSh: 3, migParOther: 6,
     mgmtVms: 5, vmCost: 150000, trainCost: 100000
   };
-  var MASTERS = 3;          // master-узлов на кластер
-  var DAYS = 220;           // рабочих дней в году на 1 FTE
-  var INS_LIMIT = 2979000;  // предельная база страховых взносов, 2026
+  var MASTERS = 3;
+  var DAYS = 220;
+  var INS_LIMIT = 2979000;
   var INS_LOW = 0.30, INS_HIGH = 0.151;
-  var REF_CLUSTERS = 10;    // команды сборки, сопровождения и ИБ заданы для 10 кластеров
+  var REF_CLUSTERS = 10;
   function teamScale(n) { return Math.min(3, Math.max(0.25, Math.sqrt(n / REF_CLUSTERS))); }
-  // Сопровождение – работа на всю сборку, а не на кластер. Ниже 10 кластеров уменьшаем по корню, как остальные команды,
-  // выше – растёт по корню 4-й степени (×2 при 16-кратном росте), не больше ×2
   function maintScale(n) { return n <= REF_CLUSTERS ? teamScale(n) : Math.min(2, Math.pow(n / REF_CLUSTERS, 0.25)); }
-  // Автоматизация своей сборки: до 10 кластеров работаем руками, дальше каждое удвоение числа кластеров
-  // снижает плановую трудоёмкость на кластер на S.automation %. Инциденты и запросы не автоматизируются
-  // rate – доля экономии на удвоение, %: для своей сборки S.automation, для Штурвала вдвое меньше (рутину и так автоматизирует платформа)
   function autoScale(n, rate) { return autoRatio(n / REF_CLUSTERS, rate); }
-  // То же по масштабу x, где x = 1 – порог, с которого начинается автоматизация
   function autoRatio(x, rate) {
     if (rate === undefined) rate = S.automation;
     if (x <= 1 || rate <= 0) return 1;
     return Math.pow(x, Math.log(1 - Math.min(rate, 90) / 100) / Math.LN2);
   }
-  // Работу на узлах автоматизируют и при большом числе кластеров, и при большом числе узлов:
-  // масштаб – больший из (кластеры / 10, worker-узлы / 200)
   var REF_NODES = 200;
   function nodeRatio(cy, workers) { return Math.max(cy / REF_CLUSTERS, workers / REF_NODES); }
-
-  /* Трудоёмкость, человеко-дни. sh – Штурвал, diy – своя сборка; perNode – добавка на каждый узел кластера */
   var COEF_DEFAULT = {
     freq: [
       { id: 'fK8s',   name: 'Обновлений Kubernetes в год', v: 3 },
@@ -1191,10 +1038,7 @@ html.drawer-open { overflow: hidden; }
       { id: 'o3', name: 'Обновление ОС на узлах', f: 'fOs', sh: 0.5, diy: 1 },
       { id: 'o4', name: 'Аудит конфигурации безопасности', f: 'fAudit', sh: 0, diy: 2, note: 'в Штурвале аудит выполняет платформа – CIS Benchmark и политики Kyverno' },
       { id: 'o5', name: 'Настройка по результатам аудита', f: 'fAudit', sh: 2, diy: 2 },
-      // На каждый worker-узел: масштабирование, замена железа, вывод. В Штурвале – группы узлов и автоскейлинг
       { id: 'o6', name: 'Ввод или вывод одного узла', f: 'fChurn', sh: 0.05, diy: 0.5, perWorker: true },
-      // Ещё работа на каждый worker-узел (черновые значения): в своей сборке – вручную или скриптами по узлам,
-      // в Штурвале – декларативно на группу узлов (NodeConfig) и силами платформы
       { id: 'o7', name: 'Обновление ОС – добавка на каждый узел', f: 'fOs', sh: 0.01, diy: 0.05, perWorker: true },
       { id: 'o8', name: 'Изменение настроек узлов: параметры ядра и sysctl, лейблы и taints, среда выполнения контейнеров, драйверы', f: 'fNodeCfg', sh: 0.01, diy: 0.5, perWorker: true },
       { id: 'o9', name: 'Дрейф конфигурации узлов и ротация сертификатов kubelet', sh: 0, diy: 0.3, perWorker: true }
@@ -1202,31 +1046,24 @@ html.drawer-open { overflow: hidden; }
     plat: [
       { id: 'p1', name: 'Обновление control plane платформы', f: 'fPlat', sh: 1, diy: 0 }
     ],
-    // Неплановая работа на один кластер в год – черновые значения, в ТЭО их не было
     unpl: [
       { id: 'u1', name: 'Инциденты: диагностика и восстановление', sh: 4, diy: 10 },
-      // Значение на каждый worker-узел кластера: больше узлов – больше отказов, нехватки ресурсов, вывода и замены узлов
       { id: 'u3', name: 'Инциденты на каждый worker-узел', sh: 0.1, diy: 0.2, perWorker: true },
       { id: 'u2', name: 'Запросы команд: доступы, неймспейсы, квоты, консультации', sh: 3, diy: 10 }
     ]
   };
-
   var S = clone(DEFAULTS);
   var C = clone(COEF_DEFAULT);
   var tab = 'cat';
-
   function clone(o) { return JSON.parse(JSON.stringify(o)); }
   function $(id) { return document.getElementById(id); }
   function freq(id) { for (var i = 0; i < C.freq.length; i++) if (C.freq[i].id === id) return C.freq[i].v; return 0; }
-  // Частота с учётом галочек: без обновлений и без работы с уязвимостями эти операции не выполняются
   function fq(id) {
     if (!S.updates && (id === 'fK8s' || id === 'fOs' || id === 'fPlat')) return 0;
     if (!S.vulns && id === 'fAudit') return 0;
     return freq(id);
   }
   function sum(list, key) { return list.reduce(function (a, r) { return a + (+r[key] || 0); }, 0); }
-
-  /* ===== Стоимость сотрудника для компании в 1-й год ===== */
   function employeeCost(salary) {
     var base = salary * 12;
     var gross = base * (1 + S.bonus / 100);
@@ -1234,22 +1071,16 @@ html.drawer-open { overflow: hidden; }
     var over = base * S.overhead / 100;
     return { base: base, gross: gross, ins: ins, over: over, total: gross + ins + over };
   }
-
-  /* ===== Трудоёмкость, человеко-дни ===== */
   function createPd(k) { return sum(C.create, k); }
-  // part: 'cl' – работа на кластер, 'node' – работа на узлах (perWorker и perNode), без part – всё
   function perClusterOpsPd(k, npc, part) {
     var wpc = Math.max(0, npc - MASTERS);
     return C.ops.reduce(function (a, r) {
-      var f = r.f ? fq(r.f) : 1;   // без частоты – раз в год
+      var f = r.f ? fq(r.f) : 1;
       var nodeW = (r.perWorker ? (+r[k] || 0) * wpc : 0) + (k === 'diy' ? (r.perNode || 0) * npc : 0);
       var clW = r.perWorker ? 0 : (+r[k] || 0);
       return a + (part === 'cl' ? clW : part === 'node' ? nodeW : clW + nodeW) * f;
     }, 0);
   }
-  /* Плановая работа за год с учётом автоматизации, человеко-дни.
-     Работу на кластер снижает автоматизация по числу кластеров, работу на узлах – по большему из масштабов кластеров и узлов.
-     У Штурвала экономия вдвое меньше заданной. У своей сборки автоматизация сокращает только разрыв со Штурвалом */
   function plannedPd(key, cy, npc, clusterWork) {
     var workers = cy * Math.max(0, npc - MASTERS);
     var cl = function (k) { return clusterWork(k) + cy * perClusterOpsPd(k, npc, 'cl'); };
@@ -1265,8 +1096,6 @@ html.drawer-open { overflow: hidden; }
   function platPd(k) { return C.plat.reduce(function (a, r) { return a + (+r[k] || 0) * fq(r.f); }, 0); }
   function oncePd(k) { return sum(C.once, k); }
   function unplPd(k, wpc) { return C.unpl.reduce(function (a, r) { return a + (+r[k] || 0) * (r.perWorker ? wpc : 1); }, 0); }
-
-  /* ===== Главный расчёт ===== */
   function compute() {
     var N = S.years;
     var c0 = Math.max(1, Math.round(S.clusters));
@@ -1276,10 +1105,9 @@ html.drawer-open { overflow: hidden; }
     var emp = employeeCost(S.salary);
     var empDiy = employeeCost(S.salary * (1 + S.diyPremium / 100));
     var is24 = S.mode === '24x7';
-    var need = S.minTeam;   // меньше этого числа людей команда эксплуатации не бывает
-    var dutyPay = is24 ? S.rota * S.allowance / 100 : 0;   // ротация 24×7 общая с инфраструктурой: платформа платит только доплату за дежурства
+    var need = S.minTeam;
+    var dutyPay = is24 ? S.rota * S.allowance / 100 : 0;
     var idx = 1 + S.indexation / 100;
-
     var cats = ['ops', 'unpl', 'topup', 'duty', 'build', 'mig', 'infra', 'train', 'maint', 'sec', 'down'];
     var sc = {
       diy: { name: 'Своя сборка K8s', years: [], tot: {}, fte: [] },
@@ -1287,7 +1115,6 @@ html.drawer-open { overflow: hidden; }
       sh:  { name: 'Штурвал', years: [], tot: {}, fte: [] }
     };
     Object.keys(sc).forEach(function (k) { sc[k].ex = {}; cats.forEach(function (c) { sc[k].tot[c] = 0; sc[k].ex[c] = []; }); sc[k].total = 0; });
-
     var prev = 0, clustersByYear = [], floorSh = false;
     for (var y = 1; y <= N; y++) {
       var cy = Math.round(N === 1 ? c0 : c0 + (cN - c0) * (y - 1) / (N - 1));
@@ -1296,83 +1123,54 @@ html.drawer-open { overflow: hidden; }
       clustersByYear.push(cy);
       var k = Math.pow(idx, y - 1);
       var costSh = emp.total * k, costDiy = empDiy.total * k;
-
       var opsFte = function (key) {
-        // Своя сборка уже есть – в 1-й год не проектируем и не создаём кластеры: они уже работают
         var inPlace = key === 'diy' && S.stack === 'have' && y === 1;
         var created = inPlace ? 0 : fresh;
-        // Пересоздаём только кластеры, которые существовали на начало года, – новые в год создания не пересоздаём
         var existing = cy - created;
-        // Плановая работа на кластерах. У Штурвала её снижает его автоматизация (вдвое слабее заданной).
-        // У своей сборки автоматизация сокращает только разрыв со Штурвалом: своя сборка = уровень Штурвала + разрыв × коэффициент,
-        // поэтому даже очень хорошо автоматизированная своя сборка не становится дешевле платформы
         var planned = plannedPd(key, cy, npc, function (k) { return created * createPd(k) + existing * freq('fRe') * createPd(k); });
         var pd = (y === 1 && !inPlace ? oncePd(key) : 0) + platPd(key) + planned;
         return pd / DAYS;
       };
       var fSh = opsFte('sh'), fDiy = opsFte('diy');
-
-      // Своя сборка: команда создания работает первые buildMonths, потом её сменяет сопровождение
       var mStart = (y - 1) * 12, mEnd = y * 12;
-      // Сборка уже есть – создание не считаем; переделываем – старую сборку сопровождаем, пока строится новая
       var buildShare = S.stack === 'have' ? 0 : Math.max(0, Math.min(mEnd, S.buildMonths) - mStart) / 12;
       var maintShare = S.stack === 'rebuild' ? 1 : 1 - buildShare;
       var buildF = S.buildTeam * teamScale(c0);
-      var maintF = S.updates ? S.maintFte * maintScale(cy) : 0;   // сопровождение = совместимость при обновлениях
-      // Команда ИБ растёт и с кластерами, и с узлами: берём больший из масштабов (10 кластеров или 200 worker-узлов = ×1)
+      var maintF = S.updates ? S.maintFte * maintScale(cy) : 0;
       var secF = S.vulns ? S.secFte * Math.min(3, Math.max(0.25, Math.sqrt(Math.max(cy / REF_CLUSTERS, cy * nodesPerCluster / 200)))) : 0;
-
       var uSh = cy * unplPd('sh', nodesPerCluster) / DAYS, uDiy = cy * unplPd('diy', nodesPerCluster) / DAYS;
-      // Команда эксплуатации не меньше минимальной: добираем людей. Для 24×7 добавляем доплату за дежурства в общей ротации.
-      // В своей сборке минимальную команду закрывают и инженеры сопровождения
       var team = function (pool) {
         return { extra: Math.max(0, need - pool) };
       };
-      /* Миграция: перенос кластеров на новую платформу и параллельная работа старой сборки, пока идёт перенос.
-         Штурвал – только если кластеры уже есть; своя сборка – только при «переделываем»; свой «Штурвал» – всегда, после запуска */
       var overlap = function (a, b) { return Math.max(0, Math.min(mEnd, b) - Math.max(mStart, a)) / 12; };
       var inYear = function (month) { return month >= mStart && month < mEnd; };
       var hasClusters = S.stack === 'have' || S.stack === 'rebuild';
       var movePd = function () { return cy * S.migPd / DAYS; };
-      // Старая сборка, пока работает параллельно: её плановая эксплуатация, инциденты и сопровождение
       var oldOps = (plannedPd('diy', cy, npc, function () { return 0; }) + cy * unplPd('diy', nodesPerCluster)) / DAYS;
-
       var migShMove = hasClusters && y === 1 ? movePd() : 0;
       var migShPar = hasClusters ? overlap(0, S.migParSh) : 0;
       var migShFte = migShMove + migShPar * (oldOps + maintF);
       var migShCost = (migShMove + migShPar * oldOps) * costSh + migShPar * maintF * costDiy;
-
       var migDiyMove = S.stack === 'rebuild' && inYear(S.buildMonths) ? movePd() : 0;
       var migDiyPar = S.stack === 'rebuild' ? overlap(S.buildMonths, S.buildMonths + S.migParOther) : 0;
       var migDiyFte = migDiyMove + migDiyPar * maintF;
       var migDiyCost = migDiyMove * costSh + migDiyPar * maintF * costDiy;
-
-      // Свой «Штурвал»: пока платформа в разработке (не меньше 2 лет), кластеры обслуживаются вручную, как в своей сборке
       var devShare = overlap(0, S.ownMonths);
       var liveShare = 1 - devShare;
       var migOwnMove = inYear(S.ownMonths) ? movePd() : 0;
       var migOwnPar = overlap(S.ownMonths, S.ownMonths + S.migParOther);
       var migOwnFte = migOwnMove + migOwnPar * (fDiy + uDiy);
       var migOwnCost = migOwnFte * costSh;
-
-      // Миграция считается отдельным проектом поверх команды эксплуатации: в минимальную команду не засчитывается
       var tSh = team(fSh + uSh);
       if (tSh.extra > 0) floorSh = true;
       var tDiy = team(fDiy + uDiy + maintF * maintShare);
-      // Разработчики своей платформы тоже входят в минимальную команду – так же, как инженеры сопровождения в своей сборке
       var tOwn = team(devShare * (fDiy + uDiy) + liveShare * (fSh + uSh) + S.ownTeam);
-
-      // Что Штурвал требует сверх своей сборки: кластер управления на отдельных ВМ и обучение команды на старте.
-      // Своя платформа после запуска тоже держит управляющий кластер
       var infraSh = S.mgmtVms * S.vmCost;
       var trainSh = y === 1 ? Math.max(S.minTeam, Math.ceil(fSh + uSh + tSh.extra)) * S.trainCost : 0;
-      // Простои: часть из-за обновлений (нет, если кластеры не обновляются) и часть из-за инцидентов
       var downDiyH = (S.updates ? S.downDiyUpd : 0) + S.downDiyInc, downShH = (S.updates ? S.downShUpd : 0) + S.downShInc;
       var rows = {
         sh:  { ops: fSh * costSh, unpl: uSh * costSh, topup: tSh.extra * costSh, duty: dutyPay * costSh, build: 0, mig: migShCost,
                infra: infraSh, train: trainSh, maint: 0, sec: 0, down: downShH * S.downCost },
-        // Надбавка – только платформенным ролям: создание и сопровождение сборки, ИБ, разработка своей платформы.
-        // Эксплуатация кластеров, добор до минимальной команды и дежурства – по обычной ставке во всех вариантах
         diy: { ops: fDiy * costSh, unpl: uDiy * costSh, topup: tDiy.extra * costSh, duty: dutyPay * costSh, build: buildF * buildShare * costDiy,
                mig: migDiyCost, infra: 0, train: 0, maint: maintF * maintShare * costDiy, sec: secF * costDiy, down: downDiyH * S.downCost },
         own: { ops: (devShare * fDiy + liveShare * fSh) * costSh, unpl: (devShare * uDiy + liveShare * uSh) * costSh,
@@ -1380,7 +1178,6 @@ html.drawer-open { overflow: hidden; }
                infra: liveShare * infraSh, train: 0, maint: 0,
                sec: secF * costDiy, down: (devShare * downDiyH + liveShare * downShH) * S.downCost }
       };
-      // Как получена каждая сумма: показываем в детализации по шагам
       var X = function (f, rate) { return f.toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' FTE × ' + (rate / 1e6).toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' млн ₽'; };
       var both = function (a, ra, b, rb, bNote) { return [a > 0 ? X(a, ra) : '', b > 0 ? X(b, rb) + (bNote || '') : ''].filter(Boolean).join(' + '); };
       var dutyT = S.rota + ' чел. в ротации × ' + S.allowance + '% × ' + rub(costSh);
@@ -1412,8 +1209,6 @@ html.drawer-open { overflow: hidden; }
     return { sc: sc, emp: emp, empDiy: empDiy, clustersByYear: clustersByYear, npc: npc, N: N, floorSh: floorSh,
              maxNodes: Math.max.apply(null, clustersByYear) * nodesPerCluster };
   }
-
-  /* ===== Форматирование ===== */
   function mln(x) {
     var v = x / 1e6, a = Math.abs(v);
     var d = a >= 100 ? 0 : 1;
@@ -1421,13 +1216,11 @@ html.drawer-open { overflow: hidden; }
   }
   function fmtM(x) { return mln(x) + ' млн ₽'; }
   function fte(x) { return x.toLocaleString('ru-RU', { maximumFractionDigits: 1, minimumFractionDigits: 1 }); }
-  // Человеко-дни в итогах: меньше 1 – два знака, чтобы малые значения не превращались в «0,0»
   function pdFmt(v) { var d = v < 1 ? 2 : 1; return v.toLocaleString('ru-RU', { minimumFractionDigits: d, maximumFractionDigits: d }); }
   function rub(x) { return Math.round(x).toLocaleString('ru-RU') + ' ₽'; }
   function engWord(n) { var r = Math.round(n * 10) / 10; if (r % 1) return 'инженера'; var a = r % 10, b = r % 100; return a === 1 && b !== 11 ? 'инженер' : (a >= 2 && a <= 4 && (b < 12 || b > 14) ? 'инженера' : 'инженеров'); }
   function ownTermText() { var y = S.ownMonths / 12; return 'не меньше ' + (y % 1 ? S.ownMonths + ' мес.' : y + ' лет'); }
   function yearsWord(n) { return n === 1 ? 'год' : (n < 5 ? 'года' : 'лет'); }
-
   var CAT_NAMES = {
     ops: ['Плановая эксплуатация', 'Создание, обновление, аудит и пересоздание кластеров'],
     unpl: ['Инциденты и запросы команд', 'Неплановая работа на кластерах'],
@@ -1442,13 +1235,10 @@ html.drawer-open { overflow: hidden; }
     down: ['Простои', 'Часы простоя × стоимость часа']
   };
   var ORDER = ['diy', 'sh', 'own'];
-
-  /* ===== Отрисовка ===== */
   var last;
-  // Итог для экранного диктора: одна фраза после паузы во вводе, а не весь блок результата на каждое нажатие
   var srTimer = null, srFirst = true;
   function announce(text) {
-    if (srFirst) { srFirst = false; return; }   // при загрузке страницы не объявляем
+    if (srFirst) { srFirst = false; return; }
     clearTimeout(srTimer);
     srTimer = setTimeout(function () { $('sr-status').textContent = text; }, 800);
   }
@@ -1458,7 +1248,6 @@ html.drawer-open { overflow: hidden; }
     var freed = diy.total - sh.total;
     announce((freed >= 0 ? 'Высвобождаемый бюджет за ' : 'Своя сборка дешевле Штурвала за ') + N + ' ' + yearsWord(N) + ': ' + fmtM(Math.abs(freed)) +
       '. Своя сборка ' + fmtM(diy.total) + ', Штурвал без лицензии ' + fmtM(sh.total) + '.');
-
     $('hero-cap').textContent = 'Высвобождаемый бюджет за ' + N + ' ' + yearsWord(N);
     var hn = $('hero-num');
     if (freed > 0) {
@@ -1469,12 +1258,10 @@ html.drawer-open { overflow: hidden; }
       $('hero-text').innerHTML = 'Столько своя сборка стоит дороже эксплуатации на Штурвале. Сравните эту сумму со стоимостью лицензии Штурвала – её рассчитает менеджер под ваш сценарий.';
     } else {
       hn.classList.add('neg');
-      // Своя сборка выходит дешевле: показываем разницу с минусом и объясняем почему
       var loss = -freed;
       $('hero-big').innerHTML = '−' + mln(loss) + '<small>млн ₽</small>';
       $('hero-year').innerHTML = '−' + mln(loss / N) + '<small>млн ₽ в год</small>';
       $('hero-year').hidden = false;
-      // Что именно у Штурвала перевешивает выгоду: миграция и/или кластер управления
       var extras = sh.tot.mig > 0 && sh.tot.infra > 0 ? 'проект миграции и кластер управления Штурвала (' + fmtM(sh.tot.mig) + ' и ' + fmtM(sh.tot.infra) + ') могут стоить'
                  : sh.tot.mig > 0 ? 'проект миграции (' + fmtM(sh.tot.mig) + ') может стоить'
                  : sh.tot.infra > 0 ? 'кластер управления Штурвала (' + fmtM(sh.tot.infra) + ') может стоить' : '';
@@ -1485,36 +1272,27 @@ html.drawer-open { overflow: hidden; }
     $('bars-cap').textContent = 'за ' + N + ' ' + yearsWord(N) + ', без лицензии Штурвала';
     $('mbar-cap').textContent = 'Высвобождается за ' + N + ' ' + yearsWord(N);
     $('mbar-val').innerHTML = (freed < 0 ? '−' : '') + mln(Math.abs(freed)) + '<small>млн ₽ · ' + (freed < 0 ? '−' : '') + mln(Math.abs(freed) / N) + ' в год</small>';
-
-    // Столбики
     var max = Math.max(diy.total, own.total, sh.total) || 1;
     $('bars').innerHTML = ORDER.map(function (k) {
       var s = R.sc[k];
       var sub = k === 'sh' ? (R.floorSh ? 'Минимальная команда: ' + fte(S.minTeam).replace(',0', '') + ' ' + engWord(S.minTeam) + ' – меньше не бывает даже при малой нагрузке' : 'Эксплуатация: люди, дежурства, простои') :
                 k === 'diy' ? 'Создание и сопровождение сборки, эксплуатация, ИБ' :
                 'Разработка ' + ownTermText() + ', пока её нет – кластеры вручную; затем эксплуатация и ИБ';
-      // Высота столбца: доля от максимума, на значение сверху оставляем место
       var h = (s.total / max * 100 * 0.86).toFixed(1);
       return '<div class="bar-row ' + k + '" data-k="' + k + '" tabindex="0">' +
         '<div class="bar-track"><div class="bar-val">' + fmtM(s.total) + '</div><div class="bar-fill" style="height:' + h + '%"></div></div>' +
         '<div class="bar-name">' + s.name + '</div>' +
         '<div class="bar-sub">' + sub + '</div></div>';
     }).join('');
-
-    // KPI: люди
     var avg = function (a) { return a.reduce(function (x, y) { return x + y; }, 0) / a.length; };
     $('kpis').innerHTML =
       '<div class="kpi"><b>' + fte(avg(diy.fte)) + '</b><span>инженеров в среднем на своей сборке</span></div>' +
       '<div class="kpi sh"><b>' + fte(avg(sh.fte)) + '</b><span>инженеров со Штурвалом</span></div>' +
       '<div class="kpi"><b>' + fte(avg(own.fte)) + '</b><span>инженеров на своей платформе</span></div>';
-
     $('ce').hidden = !(R.maxNodes <= 10);
-
-    // Подсказка о стоимости сотрудника
     $('emp-cost-note').innerHTML = 'Полная стоимость инженера в 1-й год: ' + fmtM(R.emp.total) +
       ' (зарплата с премиями ' + fmtM(R.emp.gross) + ', взносы ' + fmtM(R.emp.ins) + ', накладные ' + fmtM(R.emp.over) +
       ').';
-
     $('stack-hint').textContent = STACK[S.stack][1];
     var cMax = Math.max.apply(null, R.clustersByYear);
     var x2 = function (v) { return v.toLocaleString('ru-RU', { maximumFractionDigits: 2 }); };
@@ -1535,11 +1313,6 @@ html.drawer-open { overflow: hidden; }
     renderPops();
     renderDrawer();
   }
-
-
-  /* ===== Расчёт по шагам, окупаемость, порог выгоды, график ===== */
-
-  /* Суть расчёта каждой статьи – коротко, с текущими значениями */
   function howText(c, k) {
     var n = function (v) { return String(v).replace('.', ','); };
     var eng = '';
@@ -1573,8 +1346,6 @@ html.drawer-open { overflow: hidden; }
     var t = T[c];
     return typeof t === 'string' ? t : (t && t[k]) || '';
   }
-  /* ===== Разбор статьи по шагам за выбранный год: повторяет главный расчёт, но раскладывает его на слагаемые =====
-     Строка: [название, пояснение, { diy, sh, own }, формат]. Формат: pd – ч.д., fte – FTE, m – млн ₽, rub – ₽, n – число, mo – месяцы, sum – итог статьи */
   function detail(c, y) {
     var R = last, N = R.N, cy = R.clustersByYear[y - 1], prev = y > 1 ? R.clustersByYear[y - 2] : 0;
     var c0 = R.clustersByYear[0], wpc = Math.max(0, S.nodes) / c0, npc = R.npc;
@@ -1585,7 +1356,6 @@ html.drawer-open { overflow: hidden; }
     var devShare = overlap(0, S.ownMonths), liveShare = 1 - devShare;
     var fresh = Math.max(0, cy - prev);
     var mix = function (d, s) { return devShare * d + liveShare * s; };
-    // Плановая эксплуатация по слагаемым – для Штурвала и своей сборки
     var opsParts = function (key) {
       var inPlace = key === 'diy' && S.stack === 'have' && y === 1;
       var created = inPlace ? 0 : fresh, existing = cy - created;
@@ -1727,7 +1497,6 @@ html.drawer-open { overflow: hidden; }
     return n2(Math.round(v * 10) / 10);
   }
   var detYear = {};
-  /* ===== Панель «Как посчитано»: расчёт одной статьи – что входит, шаги за выбранный год и суммы по годам ===== */
   var drawerCat = null, drawerFrom = null;
   function drawerHtml(c) {
     var R = last, N = R.N;
@@ -1737,7 +1506,6 @@ html.drawer-open { overflow: hidden; }
       return '<div class="' + k + '"><span>' + R.sc[k].name + '</span><b>' + (R.sc[k].tot[c] > 0 ? fmtM(R.sc[k].tot[c]) : '–') + '</b><small>за ' + N + ' ' + yearsWord(N) + '</small></div>'; }).join('') + '</div>';
     html += '<h4 class="d-h">Что входит</h4><div class="d-how">' + ORDER.map(function (k) {
       return '<div class="' + k + '"><span>' + R.sc[k].name + '</span><p>' + (R.sc[k].tot[c] > 0 ? howText(c, k) : 'В этом варианте статьи нет.') + '</p></div>'; }).join('') + '</div>';
-    // Год разбора: выбранный или первый, в котором статья не нулевая
     var yAny = []; for (var yy = 1; yy <= N; yy++) if (ORDER.some(function (k) { return R.sc[k].ex[c].some(function (e) { return e.y === yy; }); })) yAny.push(yy);
     var yd = yAny.indexOf(detYear[c]) >= 0 ? detYear[c] : yAny[0];
     html += '<div class="d-steps-head"><h4 class="d-h">Расчёт по шагам</h4>' + (yAny.length > 1 ? '<span class="yr-tabs" role="group" aria-label="Год разбора">' + yAny.map(function (v) {
@@ -1764,7 +1532,6 @@ html.drawer-open { overflow: hidden; }
     $('drawer-cats').innerHTML = Object.keys(CAT_NAMES).filter(function (k) { return ORDER.some(function (s) { return R.sc[s].tot[k] > 0; }); }).map(function (k) {
       return '<button type="button" data-cat="' + k + '" aria-pressed="' + (k === c) + '">' + CAT_NAMES[k][0] + '</button>'; }).join('');
     $('drawer-body').innerHTML = drawerHtml(c);
-    // Выбранная статья всегда видна в ленте
     var nav = $('drawer-cats'), on = nav.querySelector('[aria-pressed="true"]');
     if (on) { var a = on.getBoundingClientRect(), b = nav.getBoundingClientRect(); nav.scrollLeft += a.left - b.left - (b.width - a.width) / 2; }
   }
@@ -1788,14 +1555,12 @@ html.drawer-open { overflow: hidden; }
     return list.map(function (e) { return '<span class="ex-line"><i>' + e.y + '-й год</i>' + (e.t ? e.t + ' = ' : '') + '<b>' + fmtM(e.v) + '</b></span>'; }).join('');
   }
   function cumOf(years) { var c = [0]; years.forEach(function (v, i) { c.push(c[i] + v); }); return c; }
-  // Момент, когда накопленные затраты на Штурвале становятся меньше, чем на своей сборке: в годах от старта, 0 – с первого года, null – не становятся
   function breakeven(cd, cs) {
     var d = cd.map(function (v, i) { return cs[i] - v; });
     if (d[1] < 0) return 0;
     for (var i = 2; i < d.length; i++) if (d[i] < 0) return (i - 1) + d[i - 1] / (d[i - 1] - d[i]);
     return null;
   }
-  // С какого числа кластеров Штурвал выгоднее своей сборки при остальных параметрах как сейчас
   function clusterThreshold() {
     var keep = S, out = null, grow = S.clustersEnd / S.clusters, perCl = S.nodes / S.clusters;
     try {
@@ -1823,8 +1588,6 @@ html.drawer-open { overflow: hidden; }
     $('cum-text').innerHTML = be === null
       ? 'При этих параметрах за ' + N + ' ' + yearsWord(N) + ' Штурвал не становится дешевле своей сборки.'
       : 'Накопленные затраты на Штурвале становятся меньше, чем на своей сборке, <b>' + beText + '</b>. Разница к концу периода – <b>' + fmtM(cd[N] - cs[N]) + '</b>.';
-
-    // График
     var svg = $('cum'), W = 720, H = 280, L = 56, Rm = 150, T = 34, B = 34, pw = W - L - Rm, ph = H - T - B;
     var maxV = Math.max(cd[N], cs[N]) || 1;
     var raw = maxV / 4, p = Math.pow(10, Math.floor(Math.log(raw) / Math.LN10)), m = raw / p;
@@ -1838,7 +1601,6 @@ html.drawer-open { overflow: hidden; }
     h += '<text x="' + (L - 10) + '" y="' + (T - 18) + '" text-anchor="end">млн ₽</text>';
     for (var i = 0; i <= N; i++) h += '<text x="' + x(i).toFixed(1) + '" y="' + (H - 10) + '" text-anchor="middle">' + (i === 0 ? 'старт' : i + '-й год') + '</text>';
     var pts = function (c) { return c.map(function (val, i) { return x(i).toFixed(1) + ',' + yv(val).toFixed(1); }).join(' '); };
-    // Разница между линиями – подсветка там, где Штурвал дешевле
     h += '<polygon class="gap" points="' + pts(cd) + ' ' + cs.map(function (val, i) { return x(i).toFixed(1) + ',' + yv(val).toFixed(1); }).reverse().join(' ') + '"/>';
     h += '<polyline class="l-diy" points="' + pts(cd) + '"/><polyline class="l-sh" points="' + pts(cs) + '"/>';
     cd.forEach(function (val, i) { h += '<circle class="p-diy" r="3.5" cx="' + x(i).toFixed(1) + '" cy="' + yv(val).toFixed(1) + '"/>'; });
@@ -1848,15 +1610,12 @@ html.drawer-open { overflow: hidden; }
       h += '<line class="be" x1="' + bx + '" x2="' + bx + '" y1="' + T + '" y2="' + (T + ph) + '"/>' +
         '<text class="be-t" x="' + (+bx + 6) + '" y="' + (T - 18) + '">окупается</text>';
     }
-    // Подписи на концах линий, не наезжая друг на друга
     var yd = yv(cd[N]), ys = yv(cs[N]);
     if (Math.abs(yd - ys) < 36) { var mid = (yd + ys) / 2, up = yd < ys; yd = mid + (up ? -18 : 18); ys = mid + (up ? 18 : -18); }
     var ex = x(N) + 12;
     h += '<text class="end" x="' + ex + '" y="' + (yd - 2).toFixed(1) + '">Своя сборка</text><text class="end-v" x="' + ex + '" y="' + (yd + 14).toFixed(1) + '">' + fmtM(cd[N]) + '</text>';
     h += '<text class="end sh" x="' + ex + '" y="' + (ys - 2).toFixed(1) + '">Штурвал</text><text class="end-v" x="' + ex + '" y="' + (ys + 14).toFixed(1) + '">' + fmtM(cs[N]) + '</text>';
     svg.innerHTML = h;
-
-    // Стоимость инженера по шагам
     var e = R.emp, nf = function (v) { return v.toLocaleString('ru-RU', { maximumFractionDigits: 3 }); };
     $('emp-formula').innerHTML =
       'Оклад: ' + rub(S.salary) + ' × 12 = ' + rub(e.base) + '<br>' +
@@ -1867,13 +1626,11 @@ html.drawer-open { overflow: hidden; }
     var d = new Date();
     $('res-meta').innerHTML = 'Расчёт от ' + d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' }) + ' · методика 2026.10 · <a href="#sources">источники</a>';
   }
-
   function renderTable(R) {
     var t = $('tbl'), N = R.N, html = '';
     var head = '<thead><tr><th>' + (tab === 'year' ? 'Год' : tab === 'fte' ? 'Год' : 'Статья') + '</th>' +
       ORDER.map(function (k) { return '<th class="' + (k === 'sh' ? 'sh' : '') + '">' + R.sc[k].name + '</th>'; }).join('') + '</tr></thead>';
     var cell = function (k, v, f) { return '<td class="' + (k === 'sh' ? 'sh' : '') + (v === 0 ? ' zero' : '') + '">' + (v === 0 ? '–' : f(v)) + '</td>'; };
-
     if (tab === 'cat') {
       html = Object.keys(CAT_NAMES).map(function (c) {
         var any = ORDER.some(function (k) { return R.sc[k].tot[c] > 0; });
@@ -1898,13 +1655,11 @@ html.drawer-open { overflow: hidden; }
     }
     t.innerHTML = head + '<tbody>' + html;
   }
-
   var STACK = {
     none: ['Делаем с нуля', 'Считаем создание сборки и её сопровождение после запуска'],
     have: ['Уже есть', 'Создание сборки и текущих кластеров уже оплачено – считаем только дальнейшие расходы: сопровождение, ИБ, эксплуатацию и новые кластеры'],
     rebuild: ['Переделываем', 'Считаем создание новой сборки, а старую сопровождаем, пока новая не готова']
   };
-
   function renderSummary(R) {
     var lines = [
       'Своя сборка: ' + STACK[S.stack][0].toLowerCase() + '; регулярные обновления k8s и узлов: ' + (S.updates ? 'да' : 'нет') + '; системное закрытие уязвимостей: ' + (S.vulns ? 'да' : 'нет'),
@@ -1913,7 +1668,6 @@ html.drawer-open { overflow: hidden; }
       'Своя сборка K8s: ' + fmtM(R.sc.diy.total) + '; свой «Штурвал»: ' + fmtM(R.sc.own.total) + '; Штурвал без лицензии: ' + fmtM(R.sc.sh.total),
       'Высвобождаемый бюджет: ' + (R.sc.diy.total - R.sc.sh.total < 0 ? '−' : '') + fmtM(Math.abs(R.sc.diy.total - R.sc.sh.total))
     ];
-    // Что посетитель поменял относительно значений по умолчанию – в расширенных параметрах и в таблице коэффициентов
     var MAIN = ['stack', 'updates', 'vulns', 'clusters', 'clustersEnd', 'nodes', 'years', 'mode', 'salary'];
     var d = currentDiff();
     MAIN.forEach(function (k) { delete d.params[k]; });
@@ -1924,10 +1678,7 @@ html.drawer-open { overflow: hidden; }
     }
     $('f-calc').value = lines.join('\n');
   }
-
-  /* ===== Таблица коэффициентов ===== */
   function renderCoef() {
-    // Коэффициенты можно править всегда – расчёт обновляется сразу
     var dis = '';
     var inp = function (grp, i, key, v) {
       return '<input type="number" step="any" min="0" data-g="' + grp + '" data-i="' + i + '" data-k="' + key + '" value="' + v + '"' + dis + ' aria-label="Значение">';
@@ -1963,12 +1714,9 @@ html.drawer-open { overflow: hidden; }
     h += '</tbody>';
     $('coef').innerHTML = h;
   }
-
-  /* ===== Ввод ===== */
   var NUM_IDS = ['clusters', 'nodes', 'salary', 'clustersEnd', 'bonus', 'overhead', 'indexation', 'diyPremium',
                  'buildTeam', 'buildMonths', 'maintFte', 'automation', 'ownTeam', 'ownMonths', 'secFte', 'downCost', 'downDiyUpd', 'downDiyInc', 'downShUpd', 'downShInc', 'minTeam', 'rota', 'allowance', 'migPd', 'migParSh', 'migParOther', 'mgmtVms', 'vmCost', 'trainCost'];
   var endTouched = false;
-
   function syncRange(id) {
     var r = document.querySelector('input[type="range"][data-for="' + id + '"]');
     if (!r) return;
@@ -1986,13 +1734,10 @@ html.drawer-open { overflow: hidden; }
   ['updates', 'vulns'].forEach(function (id) {
     $(id).addEventListener('change', function () { S[id] = $(id).checked; render(); renderCoef(); });
   });
-
-  /* ===== Панель «Не верю!»: ответы на два частых возражения к итоговой сумме ===== */
   var doubtFrom = null;
   function doubtHtml() {
     var R = last, N = R.N, yrs = N + ' ' + yearsWord(N);
     var freed = R.sc.diy.total - R.sc.sh.total;
-    // Тот же расчёт без обеих галочек
     var u = S.updates, v = S.vulns;
     S.updates = false; S.vulns = false; var off = compute(); S.updates = u; S.vulns = v;
     var offFreed = off.sc.diy.total - off.sc.sh.total;
@@ -2038,7 +1783,7 @@ html.drawer-open { overflow: hidden; }
     if (e.target.closest('[data-close]')) { closeDoubt(); return; }
     var a = e.target.closest('.doubt-act'); if (!a) return;
     if (a.dataset.act === 'flags') {
-      var on = !(S.updates && S.vulns);   // обе включены – убираем, иначе возвращаем обе
+      var on = !(S.updates && S.vulns);
       S.updates = on; S.vulns = on;
       syncAll(); render(); renderCoef();
       $('doubt-body').innerHTML = doubtHtml();
@@ -2058,8 +1803,6 @@ html.drawer-open { overflow: hidden; }
       else if (!e.shiftKey && document.activeElement === lastEl) { e.preventDefault(); first.focus(); }
     }
   });
-
-  /* ===== Стрелка «назад» для ссылок внутри страницы. Кроме ссылки «К таблице коэффициентов» в методике ===== */
   var backBtn = $('back-btn'), backY = null, backArmed = false;
   function backDir() { backBtn.classList.toggle('down', backY > window.scrollY); }
   document.addEventListener('click', function (e) {
@@ -2069,15 +1812,13 @@ html.drawer-open { overflow: hidden; }
     backY = window.scrollY; backArmed = false;
     backBtn.hidden = false;
     setTimeout(backDir, 50);
-  }, true);   // в фазе перехвата: ссылки внутри попапов останавливают всплытие
+  }, true);
   backBtn.addEventListener('click', function () {
     var y = backY; backY = null; backBtn.hidden = true;
     var from = window.scrollY, smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     window.scrollTo({ top: y, behavior: smooth ? 'smooth' : 'instant' });
-    // Если плавная прокрутка не началась (бывает во встроенных браузерах), переходим сразу
     if (smooth) setTimeout(function () { if (window.scrollY === from && Math.abs(from - y) > 1) window.scrollTo({ top: y, behavior: 'instant' }); }, 150);
   });
-  // Пользователь сам вернулся к исходному месту – стрелка больше не нужна
   window.addEventListener('scroll', function () {
     if (backY === null) return;
     var d = Math.abs(window.scrollY - backY);
@@ -2085,12 +1826,9 @@ html.drawer-open { overflow: hidden; }
     else if (backArmed && d < 80) { backY = null; backBtn.hidden = true; return; }
     backDir();
   }, { passive: true });
-
-  /* ===== Методика под шестигранником «i»: что галочка добавляет в расчёт ===== */
   function coefRow(list, id) { for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i]; return {}; }
   function pdx(v) { return v.toLocaleString('ru-RU', { maximumFractionDigits: 3 }); }
   function timesWord(n) { var a = n % 10, b = n % 100; return a >= 2 && a <= 4 && (b < 12 || b > 14) ? 'раза' : 'раз'; }
-  // Разница в итогах при включённой и выключенной галочке – по текущим параметрам
   function flagEffect(key) {
     var was = S[key];
     S[key] = true; var on = compute();
@@ -2151,7 +1889,7 @@ html.drawer-open { overflow: hidden; }
       b.setAttribute('aria-expanded', String(open));
       if (open) pop.innerHTML = popHtml(k);
       pop.hidden = !open;
-      if (open) pop.focus();   // диктор зачитывает методику, Tab идёт по её ссылкам и кнопке «Закрыть»
+      if (open) pop.focus();
     });
     openPop = key;
   }
@@ -2169,7 +1907,6 @@ html.drawer-open { overflow: hidden; }
       e.stopPropagation();
     });
   });
-  // Клик по своей карточке не закрывает методику: галочку можно переключить и сразу увидеть новые суммы
   document.addEventListener('click', function (e) {
     if (!openPop) return;
     var wrap = e.target.closest('.check-wrap');
@@ -2188,7 +1925,6 @@ html.drawer-open { overflow: hidden; }
     syncRange(id);
     render(); renderCoef();
   }
-
   NUM_IDS.forEach(function (id) {
     var el = $(id);
     el.addEventListener('input', function () { if (el.value !== '') setNum(id, el.value); });
@@ -2220,7 +1956,6 @@ html.drawer-open { overflow: hidden; }
   document.addEventListener('keydown', function (e) {
     if (!drawerCat) return;
     if (e.key === 'Escape') { closeDrawer(); return; }
-    // Фокус не уходит из панели
     if (e.key === 'Tab') {
       var f = $('drawer').querySelectorAll('button, a[href]'), first = f[0], lastEl = f[f.length - 1];
       if (e.shiftKey && document.activeElement === first) { e.preventDefault(); lastEl.focus(); }
@@ -2228,18 +1963,15 @@ html.drawer-open { overflow: hidden; }
     }
   });
   $('reset-coef').addEventListener('click', function () { C = clone(COEF_DEFAULT); render(); renderCoef(); });
-
   $('coef').addEventListener('input', function (e) {
     var el = e.target; if (!el.dataset.g || el.value === '') return;
     var v = Math.max(0, +el.value); if (!isFinite(v)) return;
     C[el.dataset.g][+el.dataset.i][el.dataset.k] = v;
     render();
-    // Перерисовываем только итоги, чтобы не терять фокус в поле
     var tr = el.closest('tr');
     tr.classList.toggle('changed', JSON.stringify(C[el.dataset.g][+el.dataset.i]) !== JSON.stringify(COEF_DEFAULT[el.dataset.g][+el.dataset.i]));
   });
   $('coef').addEventListener('change', function () { renderCoef(); });
-
   document.querySelectorAll('.tabs button').forEach(function (b) {
     b.addEventListener('click', function () {
       tab = b.dataset.tab;
@@ -2247,8 +1979,6 @@ html.drawer-open { overflow: hidden; }
       renderTable(last);
     });
   });
-
-  /* ===== Подсказка над столбиками ===== */
   var tip = $('tip');
   function showTip(row, x, y) {
     var s = last.sc[row.dataset.k];
@@ -2263,8 +1993,6 @@ html.drawer-open { overflow: hidden; }
   $('bars').addEventListener('mouseleave', function () { tip.hidden = true; });
   $('bars').addEventListener('focusin', function (e) { var r = e.target.closest('.bar-row'); if (r) { var b = r.getBoundingClientRect(); showTip(r, b.left, b.top); } });
   $('bars').addEventListener('focusout', function () { tip.hidden = true; });
-
-  /* ===== Форма: готовит письмо с заявкой и расчётом в почтовой программе посетителя ===== */
   var LEAD_EMAIL = 'shturval@chislitellab.ru';
   $('lead-form').addEventListener('submit', function (e) {
     e.preventDefault();
@@ -2277,14 +2005,11 @@ html.drawer-open { overflow: hidden; }
     window.location.href = 'mailto:' + LEAD_EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(text);
     $('form-msg').textContent = 'Открываем письмо в вашей почтовой программе. Если оно не открылось, напишите нам на ' + LEAD_EMAIL + '.';
   });
-
-  /* ===== Изменённые допущения: отличия от значений по умолчанию, уходят вместе с заявкой ===== */
   var PARAM_LABELS = { stack: 'Своя сборка Kubernetes', updates: 'Регулярные обновления k8s и узлов', vulns: 'Системное закрытие уязвимостей',
     years: 'Горизонт расчёта, лет', mode: 'Режим эксплуатации' };
   var GROUP_NAMES = { once: 'Разово при запуске', create: 'Создание кластера', ops: 'Эксплуатация кластера', plat: 'Платформа целиком',
     unpl: 'Неплановая работа', freq: 'Частота' };
   var FIELD_NAMES = { diy: 'своя сборка', sh: 'Штурвал', v: '' };
-
   function paramLabel(k) {
     if (PARAM_LABELS[k]) return PARAM_LABELS[k];
     var l = document.querySelector('label[for="' + k + '"]');
@@ -2319,8 +2044,6 @@ html.drawer-open { overflow: hidden; }
     });
     return out;
   }
-  /* ===== Анимация в hero: рубль рисуется линией, из его конечной точки (правый конец нижней перекладины) той же линией рисуется знак Штурвала,
-     рубль растворяется, знак заливается цветом ===== */
   (function () {
     var svg = $('hv'); if (!svg) return;
     var NS = 'http://www.w3.org/2000/svg';
@@ -2339,17 +2062,13 @@ html.drawer-open { overflow: hidden; }
       mk('stop', { offset: '0', 'stop-color': '#1cf2de', 'stop-opacity': '.3' }, halo);
       mk('stop', { offset: '1', 'stop-color': '#1cf2de', 'stop-opacity': '0' }, halo);
       var glow = mk('circle', { cx: 288, cy: 190, r: 220, fill: 'url(#hvHalo)', opacity: 0, style: 'transition: opacity .8s' }, svg);
-      // Рубль – две отдельные линии, которые рисуются строго по очереди: сначала стойка, полукруг и верхняя перекладина,
-      // затем нижняя перекладина слева направо. Отдельные элементы нужны, чтобы порядок не зависел от браузера:
-      // Safari рисует пунктир у каждой части одной линии одновременно, и тогда рубль заканчивался бы слева
       var rubG = mk('g', { filter: 'url(#hvGlow)', transform: 'translate(300 190) scale(.86) translate(-303 -145)' }, svg);
       var RUB_ATTR = { fill: 'none', stroke: '#1cf2de', 'stroke-width': 14, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' };
       var r1 = mk('path', Object.assign({ d: 'M 270 245 L 270 45 L 320 45 A 52 52 0 0 1 320 149 L 238 149' }, RUB_ATTR), rubG);
       var r2 = mk('path', Object.assign({ d: 'M 238 197 L 318 197' }, RUB_ATTR), rubG);
-      // Знак сдвинут на 12 px влево: так правый край его центральной планки проходит ровно через правый конец перекладины рубля
       var LX = 288;
       var lg = mk('g', { transform: 'translate(' + LX + ' 190) scale(2.4) translate(-45 -44.1)', filter: 'url(#hvGlow)' }, svg);
-      var LW = 14 * 0.86 / 2.4;   // та же толщина линии, что у рубля
+      var LW = 14 * 0.86 / 2.4;
       var outline = mk('path', { d: LOGO, fill: 'none', stroke: '#1cf2de', 'stroke-width': LW, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, lg);
       var fill = mk('path', { d: LOGO, fill: '#1cf2de', opacity: 0, style: 'transition: opacity .7s' }, lg);
       var l1 = r1.getTotalLength(), l2 = r2.getTotalLength(), rl = l1 + l2, ol = outline.getTotalLength();
@@ -2359,7 +2078,6 @@ html.drawer-open { overflow: hidden; }
         r1.style.visibility = a > 0.5 ? 'visible' : 'hidden'; r1.style.strokeDashoffset = (l1 - a).toFixed(1);
         r2.style.visibility = b > 0.5 ? 'visible' : 'hidden'; r2.style.strokeDashoffset = (l2 - b).toFixed(1);
       }
-      // Знак начинается с точки контура, ближайшей к концу рубля – правому концу нижней перекладины
       var e = r2.getPointAtLength(l2), EX = (300 - LX + 0.86 * (e.x - 303)) / 2.4 + 45, EY = 0.86 * (e.y - 145) / 2.4 + 44.1;
       var S = 0, near = Infinity;
       for (var q = 0; q < ol; q += 0.25) { var pt = outline.getPointAtLength(q), dd = Math.hypot(pt.x - EX, pt.y - EY); if (dd < near) { near = dd; S = q; } }
@@ -2384,7 +2102,6 @@ html.drawer-open { overflow: hidden; }
       }
       raf = requestAnimationFrame(frame);
     }
-    // Играет, когда hero на экране, и повторяется раз в 10 секунд
     function go() { clearTimeout(loopTimer); run(); if (!reduce) loopTimer = setTimeout(function () { if (visible) go(); }, 10000); }
     try {
       new IntersectionObserver(function (e) {
@@ -2394,8 +2111,6 @@ html.drawer-open { overflow: hidden; }
       }, { threshold: 0.3 }).observe(svg);
     } catch (err) { go(); }
   })();
-
-  /* ===== Панель с итогом на телефоне ===== */
   (function () {
     var bar = $('mbar'), inputsIn = false, resultIn = false;
     function upd() { bar.hidden = !(inputsIn && !resultIn); }
@@ -2403,9 +2118,8 @@ html.drawer-open { overflow: hidden; }
     try {
       new IntersectionObserver(function (e) { inputsIn = e[0].isIntersecting; upd(); }).observe($('inputs'));
       new IntersectionObserver(function (e) { resultIn = e[0].isIntersecting; upd(); }, { threshold: 0.3 }).observe($('hero-num'));
-    } catch (err) { /* без IntersectionObserver панель просто не показываем */ }
+    } catch (err) {   }
   })();
-
   syncAll(); render(); renderCoef();
 })();
 </script>
