@@ -9,6 +9,8 @@
 <meta property="og:description" content="Своя сборка, своя платформа или Штурвал – сравните на своих цифрах. Методика и коэффициенты открыты.">
 <meta property="og:url" content="https://pinkkoff.github.io/shturval-tco/">
 <meta name="theme-color" content="#000000">
+<meta name="color-scheme" content="dark">
+<meta name="supported-color-schemes" content="dark">
 <link rel="icon" href="assets/shturval-sign.svg" type="image/svg+xml">
 <link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
@@ -16,6 +18,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
+/* Страница тёмная и в светлой, и в тёмной системной теме. Правило ниже – явный сигнал для Noir, Dark Reader
+   и авто-затемнения браузеров, что тёмная версия уже есть и перекрашивать не нужно */
+@media (prefers-color-scheme: dark) { :root { color-scheme: dark; } }
 /* Оформление – по дизайн-системе «Лаборатория Числитель (профиль сайта)», как лендинг Штурвал Enterprise ML.
    Чёрный фон, Montserrat 500/700, один продуктовый цвет – Штурвал #1cf2de, карточки #171717 с radius 20px, восьмигранник. */
 :root {
@@ -662,10 +667,10 @@ html.drawer-open { overflow: hidden; }
 @media (max-width: 560px) { .doubt-list li { padding: var(--space-4) var(--space-4) var(--space-4) 56px; } .doubt-list li::before { left: 16px; } }
 @media (max-width: 1000px), (pointer: coarse) { .doubt-btn { min-height: 44px; } }
 
-/* Плашка «Прототип» в hero */
-.proto-badge { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin-bottom: var(--space-5); padding: 6px 14px 6px 6px; border: 1px dashed rgba(28, 242, 222, .55); border-radius: 999px; font-size: 13px; line-height: 1.35; color: var(--ink-muted); }
-.proto-badge b { padding: 4px 10px; border-radius: 999px; background: var(--shturval); color: var(--on-product); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; }
-@media (max-width: 560px) { .proto-badge { border-radius: var(--radius-md); padding: 8px 12px 8px 8px; } }
+/* Плашка «Прототип» справа в hero */
+.hero-grid { position: relative; }
+.proto-badge { position: absolute; top: 0; right: 0; z-index: 2; margin: 0; padding: 8px 16px; border-radius: 999px; background: #ffd23f; color: #000; font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; line-height: 1; }
+@media (max-width: 960px) { .proto-badge { position: static; justify-self: end; margin-bottom: calc(-1 * var(--space-4)); } }
 </style>
 
 <header class="nav">
@@ -688,8 +693,8 @@ html.drawer-open { overflow: hidden; }
 <div class="hero" id="top">
   <div class="hero-glow" aria-hidden="true"></div>
   <div class="wrap hero-grid">
+    <p class="proto-badge" title="Методику и коэффициенты ещё сверяем с командой Штурвала">Прототип</p>
     <div class="hero-copy">
-      <p class="proto-badge"><b>Прототип</b><span>Методику и коэффициенты ещё сверяем с командой Штурвала</span></p>
       <p class="overline">Kubernetes-платформа · общая стоимость владения</p>
       <h1 style="margin-top: 16px">Сколько стоит Kubernetes <em>в&nbsp;проде</em></h1>
       <p class="lead">Лицензия – не главная статья расходов на Kubernetes-платформу. Главные – люди, которые собирают её, обновляют, закрывают уязвимости и дежурят. Посчитайте, сколько это стоит при своей сборке и <span class="hl">какой бюджет высвобождает Штурвал</span>.</p>
